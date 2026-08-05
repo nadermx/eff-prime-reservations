@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch for M332228177 P-1 completion status
+
+[Path]
+PathExists=/root/eff-prime/runs/M332228177-pminus1-20260805T0412Z/exit_status.txt
+Unit=eff-pm1-m332228177-completion.service
+
+[Install]
+WantedBy=multi-user.target

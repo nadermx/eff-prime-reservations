@@ -1,0 +1,8 @@
+[Unit]
+Description=Capture completed M332228177 P-1 result and hashes
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/eff-prime/runs/M332228177-pminus1-20260805T0412Z
+ExecStart=/bin/bash ./capture-completion.sh
+RemainAfterExit=yes

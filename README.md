@@ -22,6 +22,8 @@ Current public progress:
 - its iteration-2,000 checkpoint was copied off-VM and SHA-256 verified.
 - P-1 later reached iteration 150,000, and its newer recovery checkpoint was
   also copied off-VM and SHA-256 verified.
+- a fail-closed completion watcher is waiting for the P-1 exit record; it
+  verifies any reported factor and cannot launch follow-on computation.
 
 These are active search records, not a probable-prime result, deterministic
 Lucas-Lehmer proof, discovery announcement, or award claim.

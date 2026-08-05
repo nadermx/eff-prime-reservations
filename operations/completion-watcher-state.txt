@@ -1,0 +1,17 @@
+2026-08-05T05:23:40Z
+enabled
+active
+Unit=eff-pm1-m332228177-completion.service
+ActiveState=active
+SubState=waiting
+active
+MainPID=7848
+NRestarts=0
+completion_service_not_started
+7864 /usr/bin/time -v env CUDAPM1_ONE_SHOT=1 LD_LIBRARY_PATH=/root/eff-prime/cudapm1/runtime12/nvidia/cufft/lib:/root/eff-prime/cudapm1/runtime12/nvidia/cuda_runtime/lib ./CUDAPm1-system-gmp -d 0 -i CUDAPm1.ini -f 19208K worktodo.txt
+7865 ./CUDAPm1-system-gmp -d 0 -i CUDAPm1.ini -f 19208K worktodo.txt
+3a5836130b4762de5da8c3f51415c53c1f31b63580e0108731a0790c5972fd91  /root/eff-prime/cudapm1/classify_cudapm1_result.py
+b6a0b93930cbf35b0d163b366b39d83594b27f49120507a2952a5d4250893dc7  /root/eff-prime/runs/M332228177-pminus1-20260805T0412Z/capture-completion.sh
+8bd5d37c94775edbc33a2c67c9b2239b56d606744fc7374eabe128c992fd2c6a  /etc/systemd/system/eff-pm1-m332228177-completion.service
+11d1bca26808f4926bddeea29ac0648ebafe8f3daa572e0cab7a3324fe3744ea  /etc/systemd/system/eff-pm1-m332228177-completion.path
+Iteration 190000 M332228177, 0xf5f1edbd0f091291, n = 19208K, CUDAPm1 v0.22 err = 0.13281 (3:35 real, 21.5202 ms/iter, ETA 11:45:40)
