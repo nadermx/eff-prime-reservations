@@ -51,8 +51,8 @@ STAGES = (
             "completion-provenance.sha256", "completion-receipt.sha256",
             "completion-classifier.stdout", "exit_status.txt", "ended_utc.txt",
             "resume_ended_utc.txt", "after_gpu.csv", "resume_after_gpu.csv",
-            "completion-published.txt", "ledger-result-head.txt",
-            "ledger-result-verify.txt",
+            "completion-published.txt", "ledger-classification-head.txt",
+            "ledger-classification-verify.txt",
         ),
     },
     {

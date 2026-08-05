@@ -41,7 +41,7 @@ def main() -> None:
         root / "runs/post-pminus1-allocation-20260805T2208Z"
     )
     receipt = json.loads((evidence / "pipeline-fault-tests.json").read_text())
-    staging = json.loads((evidence / "vm101-full-pipeline-staging-v2.json").read_text())
+    staging = json.loads((evidence / "vm101-full-pipeline-staging-v3.json").read_text())
 
     assert receipt["schema"] == "eff.M332228213-full-pipeline-fault-tests.v1"
     assert receipt["result"] == "PASS"
@@ -124,6 +124,9 @@ def main() -> None:
     assert append["remote_extension_installed"] is True
     assert append["later_local_retained"] is True
     assert append["valid_fork_rejected"] is True
+    screening = tests["screening_state_machine"]
+    assert screening["no_factor_checkpoint_admits_fresh_status_and_prp_lane"] is True
+    assert screening["verified_factor_result_rejects_later_status"] is True
     for timer_name in ("pipeline_sync_timer", "proof_backup_timer"):
         timer = receipt["local_services"][timer_name]
         assert timer["LoadState"] == "loaded"
@@ -144,7 +147,8 @@ def main() -> None:
         'receipt["classification"] == "completed_no_factor_report"',
         'receipt["b1"] == 1495000 and receipt["b2"] == 32142500',
         "assert 0 <= age <= 900",
-        '[item["event"] for item in history[-3:]] == ["work_started", "status_snapshot", "lane_started"]',
+        '[item["event"] for item in history[-3:]] == ["checkpoint", "status_snapshot", "lane_started"]',
+        'any(item["event"] == "work_started" for item in history[:-3])',
         "pgrep -f '[C]UDAPm1-system-gmp'",
         "minimum_initial_free_bytes=100000000000",
         '-use NO_ASM',

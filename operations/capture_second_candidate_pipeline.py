@@ -143,6 +143,68 @@ def exercise_ledger_reconciliation() -> dict[str, object]:
     }
 
 
+def exercise_screening_transitions() -> dict[str, object]:
+    """Prove no-factor remains nonterminal while a factor is terminal."""
+    source = ROOT / "ledger/mersenne_candidates.jsonl"
+    authority = (
+        "https://github.com/nadermx/eff-prime-reservations/commit/"
+        "83b3472f12e7d571a6aa43bc478154e42b604289"
+    )
+    with tempfile.TemporaryDirectory(
+        prefix="screening-ledger-test-", dir=ROOT / "runs"
+    ) as raw:
+        work = Path(raw)
+        tool = ROOT / "tools/candidate_ledger.py"
+        started = work / "started.jsonl"
+        shutil.copy2(source, started)
+
+        def append(path: Path, event: str, evidence: str, timestamp: str,
+                   *, authority_reference: str | None = None,
+                   expect_success: bool = True) -> subprocess.CompletedProcess[str]:
+            command = [
+                "python3", str(tool), "append", str(path), "--event", event,
+                "--exponent", "332228213", "--evidence-sha256", evidence,
+                "--note", f"fixture {event}", "--timestamp", timestamp,
+            ]
+            if authority_reference is not None:
+                command.extend(["--authority-reference", authority_reference])
+            return subprocess.run(
+                command, text=True, stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL, check=expect_success,
+            )
+
+        append(started, "status_snapshot", "3" * 64, "2026-08-05T22:55:00Z")
+        append(
+            started, "work_started", "3" * 64, "2026-08-05T22:55:01Z",
+            authority_reference=authority,
+        )
+        no_factor = work / "no-factor.jsonl"
+        factor = work / "factor.jsonl"
+        shutil.copy2(started, no_factor)
+        shutil.copy2(started, factor)
+
+        append(no_factor, "checkpoint", "4" * 64, "2026-08-05T22:55:02Z")
+        append(no_factor, "status_snapshot", "5" * 64, "2026-08-05T22:55:03Z")
+        append(
+            no_factor, "lane_started", "5" * 64, "2026-08-05T22:55:04Z",
+            authority_reference=authority,
+        )
+        run(["python3", str(tool), "verify", str(no_factor)])
+
+        append(factor, "result", "6" * 64, "2026-08-05T22:55:02Z")
+        blocked = append(
+            factor, "status_snapshot", "7" * 64, "2026-08-05T22:55:03Z",
+            expect_success=False,
+        )
+        if blocked.returncode == 0:
+            raise RuntimeError("terminal factor result admitted a later lane")
+        run(["python3", str(tool), "verify", str(factor)])
+    return {
+        "no_factor_checkpoint_admits_fresh_status_and_prp_lane": True,
+        "verified_factor_result_rejects_later_status": True,
+    }
+
+
 def user_unit(name: str) -> dict[str, object]:
     result = run([
         "systemctl", "--user", "show", name, "--no-pager",
@@ -248,6 +310,7 @@ def main() -> int:
             "no_remote_marker_sync_noop": "PASS",
             "proof_backup_prelaunch_noop": "PASS",
             "append_only_sync": ledger_tests,
+            "screening_state_machine": exercise_screening_transitions(),
         },
         "local_services": {
             "pipeline_sync_timer": sync_timer,

@@ -3,10 +3,10 @@
     "digits": 100010658,
     "exponent": 332228213
   },
-  "captured_utc": "2026-08-05T22:45:21Z",
+  "captured_utc": "2026-08-05T22:54:45Z",
   "gpu_policy": {
     "h200_used": false,
-    "remote_live_state": "NRestarts=0\nId=eff-pm1-m332228177-resume.service\nActiveState=active\nSubState=running\n\nId=eff-handoff-m332228213.path\nActiveState=active\nSubState=waiting\n\nId=eff-handoff-m332228213-prp.path\nActiveState=active\nSubState=waiting\n\nNRestarts=0\nId=eff-pm1-m332228213.service\nActiveState=inactive\nSubState=dead\n\nNRestarts=0\nId=eff-prp-m332228213.service\nActiveState=inactive\nSubState=dead\nGPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2, Tesla P40, 100 %, 17915 MiB, 34\n",
+    "remote_live_state": "NRestarts=0\nId=eff-pm1-m332228177-resume.service\nActiveState=active\nSubState=running\n\nId=eff-handoff-m332228213.path\nActiveState=active\nSubState=waiting\n\nId=eff-handoff-m332228213-prp.path\nActiveState=active\nSubState=waiting\n\nNRestarts=0\nId=eff-pm1-m332228213.service\nActiveState=inactive\nSubState=dead\n\nNRestarts=0\nId=eff-prp-m332228213.service\nActiveState=inactive\nSubState=dead\nGPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2, Tesla P40, 100 %, 17915 MiB, 35\n",
     "selected_gpu": "Tesla P40"
   },
   "installed_unit_sha256": {
@@ -62,14 +62,14 @@
     "reservation/M332228213.json.sig": "4ba4842253fd090a9724e08bd30231880389dfbe2c9b02806d74a2eb3b187112",
     "scripts/backup_vm101_M332228213_prp_proof_residues.sh": "eb8391dac82d2164ca4c88ed9075871134abdd622d7a22faa5b4616764e5da30",
     "scripts/backup_vm102_prp_proof_residues.sh": "e4bbaf6d34500ed3b006ba6534fddb46c32834f3b98bab2dfde4735ae8df3dcf",
-    "scripts/capture_p40_pminus1_completion_M332228213.sh": "b8045b00aa782ac4854a805c99c3cc292de59e5462059c11f1973ad8974681dc",
+    "scripts/capture_p40_pminus1_completion_M332228213.sh": "b438e604f06fe9796ef8d0cb5d3ad0d337679439022f987994eb1e8e9128a1d3",
     "scripts/handoff_M332228213_pminus1_to_prp.sh": "0556d347b813f799e91817f97a429d2e62d0151fdaa87b9316ca5b9789c9d783",
     "scripts/handoff_p40_to_M332228213.sh": "3f87fb42c8dcd225474bad64b98c8bda0a93b84691437416532594cb0d27c15c",
     "scripts/resume_p40_pminus1_M332228213.sh": "fe7cec3cf828bc85a1ce59d24f175f0f6ff97f5ecb2f6833cc5599539171e888",
     "scripts/run_p40_pminus1_M332228213.sh": "c623023148ed790f973a5de4837c1eeafb4d6f7486788f2bee20b64534ce61c6",
-    "scripts/run_p40_prp_M332228213.sh": "481641bdae46125ea0ab45ea398ef50b0938ccd537e23d036efab1286c7f7e39",
+    "scripts/run_p40_prp_M332228213.sh": "ddebe3cd0519f1fb019e7ccf004af2a59537f0b22395f8bf21f5e4377cf08b8d",
     "tools/candidate_ledger.py": "072aa3037423839b746195b2bedca9336dd259ccc49c62ed14d5405a4e6c5725",
-    "tools/sync_vm101_M332228213_pipeline.py": "092beeffe3b9c5b6055869fc2ae572d7a00959f74eec038d61964202c40c3a4a"
+    "tools/sync_vm101_M332228213_pipeline.py": "db74f41ff2b8701cf66c63b1aa6f4e2a9c8ba485dfbb5baeac8edceada6abb26"
   },
   "tests": {
     "append_only_sync": {
@@ -82,6 +82,10 @@
     "candidate_ledger": "PASS",
     "no_remote_marker_sync_noop": "PASS",
     "proof_backup_prelaunch_noop": "PASS",
+    "screening_state_machine": {
+      "no_factor_checkpoint_admits_fresh_status_and_prp_lane": true,
+      "verified_factor_result_rejects_later_status": true
+    },
     "shell_syntax": "PASS",
     "systemd_unit_verification": "PASS"
   }

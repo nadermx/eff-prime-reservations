@@ -63,7 +63,8 @@ for field, path in (
     assert actual == preflight["official_sources"][field]
 records = [json.loads(line) for line in open("ledger/mersenne_candidates.jsonl", encoding="utf-8")]
 history = [item for item in records if item.get("exponent") == 332228213]
-assert [item["event"] for item in history[-3:]] == ["work_started", "status_snapshot", "lane_started"]
+assert [item["event"] for item in history[-3:]] == ["checkpoint", "status_snapshot", "lane_started"]
+assert any(item["event"] == "work_started" for item in history[:-3])
 assert history[-1]["authority_reference"] == authority
 assert history[-1]["evidence_sha256"] == history[-2]["evidence_sha256"]
 actual_preflight = hashlib.sha256(open("preflight/preflight.json", "rb").read()).hexdigest()

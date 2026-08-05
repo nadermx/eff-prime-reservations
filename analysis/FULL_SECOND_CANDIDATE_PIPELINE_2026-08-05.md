@@ -27,8 +27,8 @@ The signed exact-exponent reservation has SHA-256
 | Current `M332228177` P-1 still active or unclassified | Nothing starts |
 | Current P-1 has a classified no-factor or independently verified factor receipt | Start the planned `M332228213` P-1 pass after a fresh official status check |
 | `M332228213` P-1 exits nonzero, remains active, or lacks an admissible receipt | PRP remains stopped |
-| `M332228213` P-1 returns an independently verified factor | Write the stopped marker; PRP never starts |
-| `M332228213` P-1 returns a zero-exit, exact-bound no-factor receipt | Fetch official status again, extend the append-only ledger, pass exact binary/GPU/disk/signature gates, then start PRP |
+| `M332228213` P-1 returns an independently verified factor | Append terminal `result`, write the stopped marker; PRP never starts |
+| `M332228213` P-1 returns a zero-exit, exact-bound no-factor receipt | Append nonterminal `checkpoint`, fetch official status again, extend the ledger, pass exact binary/GPU/disk/signature gates, then start PRP |
 | A transition marker does not exist | The local evidence synchronizer copies nothing |
 | The PRP service/proof directory does not exist | The off-VM proof backup exits successfully without manufacturing evidence |
 
@@ -48,12 +48,20 @@ The executable fault-test receipt records:
 - acceptance of a valid remote append-only ledger extension;
 - retention of a later valid local ledger;
 - rejection of two individually valid but divergent ledger children;
+- admission of a fresh status and PRP lane after a no-factor `checkpoint`;
+- rejection of any later status/lane after a verified-factor `result`;
 - enabled/waiting five-minute evidence-sync and ten-minute proof-backup timers;
 - an active predecessor on the selected Tesla P40 and no candidate-2 start.
 
 The compact verifier also binds the staged remote hashes back to the shareable
 source files and checks both the verified-factor stop branch and the
 completed-no-factor PRP branch.
+
+The retained v1/v2 staging receipts are audit history, not current authority.
+V2 removed a receipt-publication race; the subsequent state-machine replay
+showed that no-factor must be a nonterminal `checkpoint`, not terminal
+`result`. V3 is the first receipt binding both corrections before arithmetic
+started.
 
 ## Reproduction
 
@@ -72,11 +80,11 @@ PASS M332228213 full P-1/PRP pipeline: P40-only, both negative predecessor gates
 Evidence hashes at capture:
 
 - full VM101 staging receipt:
-  `26a5163a14f0ce6a2a22e9eb6b718a19587601829861577c4073a5efacf283ba`;
+  `59e7f71a402cf5b38486c52a49ff21b772a6c51f554245e23c69d439b7a9ff82`;
 - pipeline fault-test receipt:
-  `d211309b77d1876c320989999e75451ea31ed126775a53d82ef4942c228e44e2`;
+  `8820ef749ef2687fad3e7b1b3f57e531bacfc198aad8a16d287367494686a58c`;
 - verifier:
-  `60dffae2adbbb425a4f1657df85e4ac1d3d3780f747ccc9a8f69a5cf0cab2474`.
+  `2c8eb2c592f6a9183595d2494c9c0b9c9af48ca46c21c1c09e20ae49c385ea3b`.
 
 ## Scope boundary
 

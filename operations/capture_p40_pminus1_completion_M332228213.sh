@@ -35,23 +35,28 @@ fi
 # makes the ledger result record and all provenance part of the atomic gate.
 receipt_sha="$(sha256sum completion-receipt.json | awk '{print $1}')"
 classification="$(python3 -c 'import json; print(json.load(open("completion-receipt.json"))["classification"])')"
-latest_matches="$(python3 - "$receipt_sha" <<'PY'
+case "$classification" in
+    completed_no_factor_report) ledger_event=checkpoint ;;
+    verified_factor) ledger_event=result ;;
+    *) fail "inadmissible zero-exit classification: $classification" ;;
+esac
+latest_matches="$(python3 - "$receipt_sha" "$ledger_event" <<'PY'
 import json
 import sys
 records = [json.loads(line) for line in open("ledger/mersenne_candidates.jsonl", encoding="utf-8")]
 history = [r for r in records if r.get("exponent") == 332228213]
-print("yes" if history and history[-1].get("event") == "result" and
+print("yes" if history and history[-1].get("event") == sys.argv[2] and
       history[-1].get("evidence_sha256") == sys.argv[1] else "no")
 PY
 )"
 if [ "$latest_matches" != yes ]; then
     python3 candidate_ledger.py append ledger/mersenne_candidates.jsonl \
-        --event result --exponent 332228213 --evidence-sha256 "$receipt_sha" \
+        --event "$ledger_event" --exponent 332228213 --evidence-sha256 "$receipt_sha" \
         --note "Completed fixed-bound P-1 classification: $classification; B1=1495000, B2=32142500." \
-        > ledger-result-head.txt || fail "cannot append P-1 result"
+        > ledger-classification-head.txt || fail "cannot append P-1 classification"
 fi
 python3 candidate_ledger.py verify ledger/mersenne_candidates.jsonl \
-    > ledger-result-verify.txt || fail "post-result ledger invalid"
+    > ledger-classification-verify.txt || fail "post-classification ledger invalid"
 sha256sum completion-receipt.json completion-classifier.stdout exit_status.txt \
     run.log run.time ledger/mersenne_candidates.jsonl > completion-provenance.sha256
 sha256sum completion-receipt.json > completion-receipt.sha256
