@@ -1,0 +1,26 @@
+Purpose: full checkpointed PRP lane for the independently reserved M332228177
+Candidate: M332228177 = 2^332228177-1 (100010647 decimal digits)
+Started UTC: 2026-08-05T04:50:53Z
+Worker: VPS.org VM102 eff-prime-prp-p40, 38.86.78.6
+GPU: Tesla P40, GPU-a5c50372-9b4f-1496-eebf-f7220cd342fd
+Driver/API: 580.173.02 OpenCL
+Program: official PRPLL-NTT OpenCL binary, version 4c7d159
+Program SHA-256: 04073474c66c374a7ef91c18b6b3c30a5bd726969b67707a533888812f44c27d
+Command: ./prpll -dir work -device 0 -use NO_ASM -prp 332228177 -noclean
+Service: eff-prp-m332228177.service, enabled at boot, Restart=on-failure
+Service-unit SHA-256: 4cfbfbe6d056ee6d36dcb4caf5bd9e1aae71da699f65e3572bdc9cae558089e0
+Guarded launcher SHA-256: f2a4d63a63d98cae2629f6132ca63b329061519dba432fd629bcd9db5327a182
+Result validator SHA-256: 90bdfa704227aae6fabcef1b580140e7b444f8e209d55dd7da708c3491bbc544
+Fresh official preflight fetched UTC: 2026-08-05T04:50:04Z
+Fresh official preflight SHA-256: 3856b836299bde4a39451601f07ef24712e687cad463a5df256f19cd1d124864
+State at gate: untested, no known factor, no assignment, TF complete through displayed 2^81 target
+Reservation extension expiry: 2027-01-15T04:06:06Z
+Initial available disk: 119220699136 bytes
+PRPLL proof-power-11 storage estimate: approximately 83.2 GB
+First checkpoint: iteration 2000 at 2026-08-05T04:52:06Z
+First checkpoint residue: 91570422d2b2ab62
+First checkpoint measured rate: 15729 microseconds/iteration
+First checkpoint projection: 60 days 11 hours 36 minutes; early estimate, not a guarantee
+First checkpoint SHA-256: 287f3d8a9c61d4e6601ab26183acab4bde2213b5c66176553f483ff9a789b413
+First checkpoint off-VM backup: verified byte-for-byte by matching SHA-256
+Scope: this is an active probable-prime screen/proof stream; it is not a prime result or deterministic primality proof

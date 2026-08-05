@@ -1,0 +1,23 @@
+	Command being timed: "./prpll -dir threshold-prp-10000 -device 0 -use NO_ASM -prp 332192831 -iters 10000 -noclean"
+	User time (seconds): 34.79
+	System time (seconds): 1.59
+	Percent of CPU this job got: 20%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:56.43
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 419512
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 448
+	Minor (reclaiming a frame) page faults: 211153
+	Voluntary context switches: 100967
+	Involuntary context switches: 90
+	Swaps: 0
+	File system inputs: 148016
+	File system outputs: 166080
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

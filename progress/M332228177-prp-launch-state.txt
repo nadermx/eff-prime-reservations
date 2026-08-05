@@ -1,0 +1,23 @@
+● eff-prp-m332228177.service - EFF independent M332228177 checkpointed PRP on VM102 P40
+     Loaded: loaded (/etc/systemd/system/eff-prp-m332228177.service; enabled; preset: enabled)
+     Active: active (running) since Wed 2026-08-05 04:50:52 UTC; 2min 53s ago
+   Main PID: 3453 (run.sh)
+      Tasks: 10 (limit: 4628)
+     Memory: 165.6M (peak: 269.6M)
+        CPU: 42.604s
+     CGroup: /system.slice/eff-prp-m332228177.service
+             ├─3453 /bin/bash /root/eff-prime/runs/M332228177-prp-20260805T0450Z/run.sh
+             ├─3489 /usr/bin/time -v ./prpll -dir work -device 0 -use NO_ASM -prp 332228177 -noclean
+             └─3490 ./prpll -dir work -device 0 -use NO_ASM -prp 332228177 -noclean
+
+Aug 05 04:50:52 ubuntu systemd[1]: Started eff-prp-m332228177.service - EFF independent M332228177 checkpointed PRP on VM102 P40.
+MainPID=3453
+NRestarts=0
+FragmentPath=/etc/systemd/system/eff-prp-m332228177.service
+ActiveEnterTimestamp=Wed 2026-08-05 04:50:52 UTC
+2026/08/05 04:53:45.699, Tesla P40, GPU-a5c50372-9b4f-1496-eebf-f7220cd342fd, 580.173.02, 100 %, 801 MiB, 24576 MiB, 132.77 W, 37
+Filesystem        1B-blocks       Used    Available Use% Mounted on
+/dev/sda1      123690532864 4494667776 119179087872   4% /
+287f3d8a9c61d4e6601ab26183acab4bde2213b5c66176553f483ff9a789b413  /root/eff-prime/runs/M332228177-prp-20260805T0450Z/work/332228177/332228177-000002000.prp
+69fddadda1794efe3b6324f5f67311d96615b25151012f63d49a6846b71f1ab8  /root/eff-prime/runs/M332228177-prp-20260805T0450Z/work/gpuowl-0.log
+4cfbfbe6d056ee6d36dcb4caf5bd9e1aae71da699f65e3572bdc9cae558089e0  /etc/systemd/system/eff-prp-m332228177.service

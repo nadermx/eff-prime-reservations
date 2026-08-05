@@ -1,0 +1,10 @@
+Purpose: fresh official status gate immediately before the independent VM102 PRP lane
+Candidate: M332228177 = 2^332228177-1
+Fetched UTC: 2026-08-05T04:50:04Z
+Published status: untested, no known factor
+Assignment record present: false
+Published trial factoring: 2^81; displayed target: 2^81
+Published historical P-1 bounds: B1=100000, B2=1000000
+Manual-reservation review classification: eligible
+Computation authorization: the signed independent exact-exponent reservation and extension, not this read-only snapshot
+Scope: records public PrimeNet state; does not itself reserve or prove the candidate

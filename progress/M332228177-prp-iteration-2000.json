@@ -1,0 +1,33 @@
+{
+  "schema": "eff-prpll-checkpoint-evidence-v1",
+  "candidate": {
+    "form": "2^p-1",
+    "exponent": 332228177,
+    "decimal_digits": 100010647
+  },
+  "lane": "full PRP with PRPLL proof stream",
+  "worker": {
+    "vmid": 102,
+    "gpu": "Tesla P40",
+    "gpu_uuid": "GPU-a5c50372-9b4f-1496-eebf-f7220cd342fd",
+    "driver": "580.173.02"
+  },
+  "program": {
+    "name": "PRPLL-NTT OpenCL",
+    "version": "4c7d159",
+    "sha256": "04073474c66c374a7ef91c18b6b3c30a5bd726969b67707a533888812f44c27d"
+  },
+  "started_utc": "2026-08-05T04:50:53Z",
+  "checkpoint_utc": "2026-08-05T04:52:06Z",
+  "iteration": 2000,
+  "residue64": "91570422d2b2ab62",
+  "microseconds_per_iteration": 15729,
+  "reported_eta": "60d 11:36",
+  "checkpoint_file": "332228177-000002000.prp",
+  "checkpoint_size_bytes": 41528619,
+  "checkpoint_sha256": "287f3d8a9c61d4e6601ab26183acab4bde2213b5c66176553f483ff9a789b413",
+  "log_sha256_at_backup": "69fddadda1794efe3b6324f5f67311d96615b25151012f63d49a6846b71f1ab8",
+  "off_vm_backup_verified": true,
+  "service_restarts_at_backup": 0,
+  "warning": "A PRP checkpoint and proof stream are not a deterministic primality proof."
+}

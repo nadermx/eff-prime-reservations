@@ -1,0 +1,19 @@
+Purpose: independent VM102 Tesla P40 validation before any candidate work
+VM: 102 (eff-prime-prp-p40), 38.86.78.6
+GPU: Tesla P40, GPU-a5c50372-9b4f-1496-eebf-f7220cd342fd
+Driver: 580.173.02 OpenCL
+Program: official PRPLL-NTT OpenCL binary, version 4c7d159
+Program SHA-256: 04073474c66c374a7ef91c18b6b3c30a5bd726969b67707a533888812f44c27d
+Known-composite threshold input: M332192831
+Command: ./prpll -dir threshold-prp-10000 -device 0 -use NO_ASM -prp 332192831 -iters 10000 -noclean
+Expected cross-hardware residue at iteration 10000: bff6cc96e2010c5c
+Observed residue at iteration 10000: bff6cc96e2010c5c
+Observed average at iteration 10000: 12209 microseconds/iteration
+Projected full PRP time printed by PRPLL: 46 days 22 hours 31 minutes
+Default proof-power-11 storage estimate printed by PRPLL: 83.2 GB
+First invocation: 2026-08-05T04:38:58Z to 2026-08-05T04:38:59Z, wrapper exit 134
+First-invocation diagnosis: the requested output directory had not been created; no GPU arithmetic started
+Corrected invocation: 2026-08-05T04:39:20Z to 2026-08-05T04:42:17Z, exit 0
+Corrected elapsed wall time: 2 minutes 56.43 seconds
+Conclusion: PASS; the corrected run matched the independently recorded residue exactly
+Scope: this is a bounded correctness/throughput validation, not a candidate PRP result or primality proof

@@ -1,0 +1,20 @@
+[Unit]
+Description=EFF independent M332228177 checkpointed PRP on VM102 P40
+After=network-online.target nvidia-persistenced.service
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+WorkingDirectory=/root/eff-prime/runs/M332228177-prp-20260805T0450Z
+ExecStart=/root/eff-prime/runs/M332228177-prp-20260805T0450Z/run.sh
+Restart=on-failure
+RestartSec=30
+RestartPreventExitStatus=64
+RestartForceExitStatus=75
+KillSignal=SIGINT
+TimeoutStopSec=900
+Nice=-10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,14 @@
+20260805 04:39:20  PRPLL 4c7d159 starting
+20260805 04:39:20  config: -dir threshold-prp-10000 -device 0 -use NO_ASM -prp 332192831 -iters 10000 -noclean 
+20260805 04:39:20  device 0, OpenCL 580.173.02, unique id ''
+20260805 04:39:21 332192831 No FFTs found in tune.txt that can handle 332192831. Consider tuning with -tune
+20260805 04:39:21 332192831 config:  -DNO_ASM=1
+20260805 04:39:21 332192831 Using CARRY64
+20260805 04:39:21 332192831 FFT: 8M 4:1K:16:256:101 (39.60 bpw)
+20260805 04:39:42 332192831 OK         0 on-load: blockSize 1000, 0000000000000003
+20260805 04:39:42 332192831 Proof of power 11 requires about 83.2GB of disk space
+20260805 04:40:26 332192831 OK      2000 e99bd3e949a1e2b1 15393 ETA 59d 04:26; Z=18531 (avg 18530.6) 
+20260805 04:42:03 332192831 Stopping, please wait..
+20260805 04:42:16 332192831 OK     10000 bff6cc96e2010c5c 12209 ETA 46d 22:31; Z=18542 (avg 18532.4) 
+20260805 04:42:16  Exception "stop requested"
+20260805 04:42:16  Bye
