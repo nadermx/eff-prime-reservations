@@ -1,0 +1,108 @@
+{
+  "existing_pminus1": {
+    "autoprimenet_probability": {
+      "stage1": 0.0031666533893372623,
+      "stage2": 0.005573390515010215,
+      "total": 0.008740043904347478
+    },
+    "b1": 100000,
+    "b2": 1000000
+  },
+  "exponent": 332192831,
+  "measurement_inputs": {
+    "p40_checkpoint_gcd_seconds": 111.30214573896956,
+    "p40_prp_us_per_iteration": 12306.0,
+    "p40_transform_benchmark_ms_not_iteration_cost": 1.7067,
+    "rtx_prp_days": 12.316282996886574,
+    "rtx_prp_us_per_iteration": 3203.0,
+    "stage2_values": 154
+  },
+  "model_source": {
+    "functions": [
+      "rho",
+      "integral",
+      "p_first_stage",
+      "p_second_stage",
+      "pm1"
+    ],
+    "path": "third_party/autoprimenet/autoprimenet.py",
+    "sha256": "c681e9f8a422506be3246b696635a22115ec34228e0f5bf53134bb8cb3bb496c"
+  },
+  "schema": "eff.pminus1-upgrade-analysis.v1",
+  "strategies": [
+    {
+      "autoprimenet_probability": {
+        "incremental_conditional_after_old_pass_failed": 0.024527534761832823,
+        "incremental_unconditional_after_old_pass": 0.024313163031148995,
+        "stage1": 0.013865630558170581,
+        "stage2": 0.01918757637732589,
+        "total": 0.033053206935496474
+      },
+      "b1": 1495000,
+      "b2": 32142500,
+      "cudapm1_reported_probability": 0.0297,
+      "decision_model": {
+        "conservative_expected_calendar_hours_gained_when_parallel": 6.6733754074772635,
+        "expected_rtx_compute_hours_saved": 7.250113424224945,
+        "p40_cost_expressed_as_rtx_prp_hours": 90.34094972999472,
+        "resource_cost_to_expected_saved_ratio": 12.460625709404317
+      },
+      "evidence": "runs/cudapm1-p40-validation-20260805T025842Z/optimized-bounds-one-test.log",
+      "runtime_model": {
+        "checkpoint_gcd_seconds": 111.30214573896956,
+        "checkpoint_progress_evidence": "runs/cudapm1-p40-validation-20260805T025842Z/checkpoint-progress-one-test.json",
+        "fixed_overhead_seconds": 30.0,
+        "measured_stage1_iteration_ms": 21.39406487232574,
+        "stage1_seconds": 46157.416839199446,
+        "stage2_seconds": 38351.32352657005,
+        "total_p40_hours": 23.51390069764124
+      },
+      "stage1_iterations": 2157487,
+      "stage2_model": {
+        "estimated_pairings": 271789,
+        "estimated_primes": 1860558,
+        "latency_adjusted_equivalent_iterations": 1792615.09,
+        "passes": 4,
+        "raw_equivalent_iterations": 1644601
+      }
+    },
+    {
+      "autoprimenet_probability": {
+        "incremental_conditional_after_old_pass_failed": 0.03420823988523576,
+        "incremental_unconditional_after_old_pass": 0.03390925836674835,
+        "stage1": 0.018807439090807596,
+        "stage2": 0.023841863180288227,
+        "total": 0.042649302271095826
+      },
+      "b1": 3215000,
+      "b2": 79571250,
+      "cudapm1_reported_probability": 0.039,
+      "decision_model": {
+        "conservative_expected_calendar_hours_gained_when_parallel": 8.348911439973746,
+        "expected_rtx_compute_hours_saved": 10.111640718046713,
+        "p40_cost_expressed_as_rtx_prp_hours": 197.9770556454221,
+        "resource_cost_to_expected_saved_ratio": 19.5791228313802
+      },
+      "evidence": "runs/cudapm1-p40-validation-20260805T025842Z/optimized-bounds.log",
+      "runtime_model": {
+        "checkpoint_gcd_seconds": 111.30214573896956,
+        "checkpoint_progress_evidence": "runs/cudapm1-p40-validation-20260805T025842Z/checkpoint-progress-two-tests.json",
+        "fixed_overhead_seconds": 30.0,
+        "measured_stage1_iteration_ms": 20.79002079002079,
+        "stage1_seconds": 96447.94178794179,
+        "stage2_seconds": 88916.51205821207,
+        "total_p40_hours": 51.52937666441468
+      },
+      "stage1_iterations": 4639146,
+      "stage2_model": {
+        "estimated_pairings": 609664,
+        "estimated_primes": 4398427,
+        "latency_adjusted_equivalent_iterations": 4276884.23,
+        "passes": 4,
+        "raw_equivalent_iterations": 3923747
+      }
+    }
+  ],
+  "trial_factoring_depth": 81,
+  "warning": "All factor probabilities are heuristic; runtime uses measured throughput plus a source-derived work model."
+}
