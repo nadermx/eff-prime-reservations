@@ -5,3 +5,5 @@ Description=Classify completed M332228213 P-1 result
 Type=oneshot
 WorkingDirectory=/root/eff-prime/runs/M332228213-pminus1-queued
 ExecStart=/bin/bash ./capture-completion.sh
+Restart=on-failure
+RestartSec=30s

@@ -1,0 +1,8 @@
+[Unit]
+Description=Back up completed VM101 M332228213 PRP proof residues off-VM
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /home/john/eff/scripts/backup_vm101_M332228213_prp_proof_residues.sh

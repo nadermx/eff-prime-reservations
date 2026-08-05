@@ -1,0 +1,11 @@
+[Unit]
+Description=Poll VM101 M332228213 transition evidence every five minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+Persistent=true
+Unit=eff-vm101-M332228213-pipeline-sync.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Synchronize verified VM101 M332228213 transition evidence
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/john/eff
+ExecStart=/usr/bin/python3 /home/john/eff/tools/sync_vm101_M332228213_pipeline.py --refresh-deliverables

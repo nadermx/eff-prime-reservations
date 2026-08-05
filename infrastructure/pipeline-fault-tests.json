@@ -1,0 +1,88 @@
+{
+  "candidate": {
+    "digits": 100010658,
+    "exponent": 332228213
+  },
+  "captured_utc": "2026-08-05T22:45:21Z",
+  "gpu_policy": {
+    "h200_used": false,
+    "remote_live_state": "NRestarts=0\nId=eff-pm1-m332228177-resume.service\nActiveState=active\nSubState=running\n\nId=eff-handoff-m332228213.path\nActiveState=active\nSubState=waiting\n\nId=eff-handoff-m332228213-prp.path\nActiveState=active\nSubState=waiting\n\nNRestarts=0\nId=eff-pm1-m332228213.service\nActiveState=inactive\nSubState=dead\n\nNRestarts=0\nId=eff-prp-m332228213.service\nActiveState=inactive\nSubState=dead\nGPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2, Tesla P40, 100 %, 17915 MiB, 34\n",
+    "selected_gpu": "Tesla P40"
+  },
+  "installed_unit_sha256": {
+    "eff-vm101-M332228213-pipeline-sync.service": "9eb6604966349eebc04ed6bb393d82923a24c5855af56209a27b8545e4c35fa4",
+    "eff-vm101-M332228213-pipeline-sync.timer": "cd99b61a0782bb222bb2707f3857fe1449aef601c66b4435e357c9417cdaecfb",
+    "eff-vm101-M332228213-proof-residue-backup.service": "f8bacecaca876660ae27d4edf076b384952b9b45e73a23316e6c675500419c7c",
+    "eff-vm101-M332228213-proof-residue-backup.timer": "555948523640c5231ff37fbaec7e47dd6cead5eb3808eff2223c33cc451feb75"
+  },
+  "local_services": {
+    "pipeline_sync_timer": {
+      "ActiveState": "active",
+      "LoadState": "loaded",
+      "Result": "success",
+      "SubState": "waiting",
+      "UnitFileState": "enabled"
+    },
+    "proof_backup_prelaunch_service": {
+      "ActiveState": "inactive",
+      "ExecMainStatus": 0,
+      "LoadState": "loaded",
+      "Result": "success",
+      "SubState": "dead",
+      "UnitFileState": "static"
+    },
+    "proof_backup_timer": {
+      "ActiveState": "active",
+      "LoadState": "loaded",
+      "Result": "success",
+      "SubState": "waiting",
+      "UnitFileState": "enabled"
+    }
+  },
+  "remote_host": "38.86.78.5",
+  "result": "PASS",
+  "schema": "eff.M332228213-full-pipeline-fault-tests.v1",
+  "scope": "Pre-result handoff and evidence fault tests only; not a P-1 result, PRP result, primality proof, publication, or EFF claim.",
+  "source_sha256": {
+    "configs/eff-handoff-m332228213-prp.path": "2fb448d777d9013b23c576fb11623ea56c0a1f2c380257119b00a28aa34f4ab2",
+    "configs/eff-handoff-m332228213-prp.service": "73c6b740cfc65f79a13dc2a05780a2d15b689db6759522207bf2b363e0486854",
+    "configs/eff-handoff-m332228213.path": "c85ad354d11252b6ed38ebce61e43b25266a775b42656c63c2714571b8ff80b0",
+    "configs/eff-handoff-m332228213.service": "6c49e64dda91f69e1ea2426709ea3769403be9db6547ee2bbb1e0f94409b5ef0",
+    "configs/eff-pm1-m332228213-completion.path": "26d85f954840071aae43cc4d2d8ba044df8100766c7834c5f837b754a768c85d",
+    "configs/eff-pm1-m332228213-completion.service": "83bc0377edf993fea2fc9b4ad18a55bed90d1cb4fb2a3fcfdab26fdbffeb46cf",
+    "configs/eff-pm1-m332228213-resume.service": "431eee2705b9f993c01b17260bfabafba1275f5cb3582843c82a5557b953f86b",
+    "configs/eff-pm1-m332228213.service": "df3ee73ee51cb33fdaf1ee2b37c3eed3859f7ec5e659ed1332b3f63aa024e6a4",
+    "configs/eff-prp-m332228213.service": "b6e2bdb97ef61d6c146a7b91c513189096c02ac8f65f6dd731f15320f82bacb2",
+    "configs/eff-vm101-M332228213-pipeline-sync.service": "9eb6604966349eebc04ed6bb393d82923a24c5855af56209a27b8545e4c35fa4",
+    "configs/eff-vm101-M332228213-pipeline-sync.timer": "cd99b61a0782bb222bb2707f3857fe1449aef601c66b4435e357c9417cdaecfb",
+    "configs/eff-vm101-M332228213-proof-residue-backup.service": "f8bacecaca876660ae27d4edf076b384952b9b45e73a23316e6c675500419c7c",
+    "configs/eff-vm101-M332228213-proof-residue-backup.timer": "555948523640c5231ff37fbaec7e47dd6cead5eb3808eff2223c33cc451feb75",
+    "ledger/mersenne_candidates.jsonl": "878698039b02ec399c66ce0dd5cd9a61152240220d6f6fa44d463a83c4d70fa3",
+    "reservation/M332228213.json": "ba99b88790245719a747b691aec9f32afa8fa0e5be2046575fbf3082e2b22d12",
+    "reservation/M332228213.json.sig": "4ba4842253fd090a9724e08bd30231880389dfbe2c9b02806d74a2eb3b187112",
+    "scripts/backup_vm101_M332228213_prp_proof_residues.sh": "eb8391dac82d2164ca4c88ed9075871134abdd622d7a22faa5b4616764e5da30",
+    "scripts/backup_vm102_prp_proof_residues.sh": "e4bbaf6d34500ed3b006ba6534fddb46c32834f3b98bab2dfde4735ae8df3dcf",
+    "scripts/capture_p40_pminus1_completion_M332228213.sh": "b8045b00aa782ac4854a805c99c3cc292de59e5462059c11f1973ad8974681dc",
+    "scripts/handoff_M332228213_pminus1_to_prp.sh": "0556d347b813f799e91817f97a429d2e62d0151fdaa87b9316ca5b9789c9d783",
+    "scripts/handoff_p40_to_M332228213.sh": "3f87fb42c8dcd225474bad64b98c8bda0a93b84691437416532594cb0d27c15c",
+    "scripts/resume_p40_pminus1_M332228213.sh": "fe7cec3cf828bc85a1ce59d24f175f0f6ff97f5ecb2f6833cc5599539171e888",
+    "scripts/run_p40_pminus1_M332228213.sh": "c623023148ed790f973a5de4837c1eeafb4d6f7486788f2bee20b64534ce61c6",
+    "scripts/run_p40_prp_M332228213.sh": "481641bdae46125ea0ab45ea398ef50b0938ccd537e23d036efab1286c7f7e39",
+    "tools/candidate_ledger.py": "072aa3037423839b746195b2bedca9336dd259ccc49c62ed14d5405a4e6c5725",
+    "tools/sync_vm101_M332228213_pipeline.py": "092beeffe3b9c5b6055869fc2ae572d7a00959f74eec038d61964202c40c3a4a"
+  },
+  "tests": {
+    "append_only_sync": {
+      "later_local_retained": true,
+      "records": 20,
+      "remote_extension_installed": true,
+      "valid_fork_rejected": true,
+      "verified_final_sha256": "878698039b02ec399c66ce0dd5cd9a61152240220d6f6fa44d463a83c4d70fa3"
+    },
+    "candidate_ledger": "PASS",
+    "no_remote_marker_sync_noop": "PASS",
+    "proof_backup_prelaunch_noop": "PASS",
+    "shell_syntax": "PASS",
+    "systemd_unit_verification": "PASS"
+  }
+}

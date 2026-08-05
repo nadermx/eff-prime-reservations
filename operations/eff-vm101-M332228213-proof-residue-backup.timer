@@ -1,0 +1,11 @@
+[Unit]
+Description=Back up VM101 M332228213 PRP proof residues every ten minutes
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=10min
+Persistent=true
+Unit=eff-vm101-M332228213-proof-residue-backup.service
+
+[Install]
+WantedBy=timers.target

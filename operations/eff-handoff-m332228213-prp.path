@@ -1,0 +1,9 @@
+[Unit]
+Description=Wait for classified M332228213 P-1 before PRP
+
+[Path]
+PathExists=/root/eff-prime/runs/M332228213-pminus1-queued/completion-published.txt
+Unit=eff-handoff-m332228213-prp.service
+
+[Install]
+WantedBy=multi-user.target

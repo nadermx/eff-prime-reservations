@@ -1,0 +1,8 @@
+[Unit]
+Description=Fail-closed M332228213 P-1-to-PRP handoff
+After=eff-pm1-m332228213-completion.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/eff-prime/runs/M332228213-prp-queued
+ExecStart=/bin/bash ./handoff.sh
