@@ -1,0 +1,37 @@
+{
+  "schema": "eff-independent-mersenne-reservation-extension-v1",
+  "extension_id": "nadermx-M332228177-extension-20260805T044057Z",
+  "created_utc": "2026-08-05T04:40:57Z",
+  "previous_expires_utc": "2026-09-09T04:06:06Z",
+  "new_expires_utc": "2027-01-15T04:06:06Z",
+  "reservation_identity": {
+    "display_name": "Johnathan Nader",
+    "github_account": "nadermx",
+    "github_url": "https://github.com/nadermx",
+    "signer_identity": "nadermx",
+    "ssh_ed25519_fingerprint": "SHA256:kIrmryTIjAGaDQ6t4Gt2dkwarr6jgnVsEg/uDZQk5jQ"
+  },
+  "candidate": {
+    "form": "2^p-1",
+    "exponent": 332228177,
+    "exact_integer": "2^332228177-1",
+    "decimal_digits": 100010647
+  },
+  "original_reservation": {
+    "reservation_id": "nadermx-M332228177-20260805T040606Z",
+    "json_sha256": "084f19c8efc09a3a04c08efc26a1bcaf6e294351240e532ddfce9a773c0c0f6e",
+    "authority_commit": "f21caa97c766766c0204a3f8fffccd5a65b8aee4",
+    "authority_url": "https://github.com/nadermx/eff-prime-reservations/commit/f21caa97c766766c0204a3f8fffccd5a65b8aee4"
+  },
+  "extension_basis": {
+    "ledger_head_before_extension": "0ec2b2ddbd1fd79275161b48e3a10401b6e13d156ab422fe440e0f5cf6e6576c",
+    "active_pminus1_started_utc": "2026-08-05T04:13:25Z",
+    "slow_path": "A second isolated Tesla P40 is being validated for a checkpointed PRP. Its early measured projection is approximately 59 days for PRP; a successful PRP would still require deterministic Lucas-Lehmer and independent confirmation.",
+    "reason": "The original bounded reservation is shorter than the measured slow-path computation and proof window."
+  },
+  "scope": {
+    "exact_exponents_only": [332228177],
+    "result_policy": "A factor, PRP result, Lucas-Lehmer residue, relinquishment, or further bounded extension will be published in the reservation repository.",
+    "non_claim": "This extension is not a claim that the number is prime, a discovery announcement, a coordinator assignment, or an EFF award claim."
+  }
+}

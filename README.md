@@ -2,7 +2,8 @@
 
 This repository publicly reserves exactly `M332228177 = 2^332228177-1` for an
 independent search by Johnathan Nader (`@nadermx`).  It reserves no surrounding
-range and expires at `2026-09-09T04:06:06Z` unless a result or extension is
+range.  A signed extension published after the slow P40 path was measured now
+expires at `2027-01-15T04:06:06Z` unless a result or later bounded extension is
 published first.
 
 The reservation was prepared only after a fresh official status fetch reported
@@ -24,6 +25,12 @@ ssh-keygen -Y verify \
   -n eff-prime-reservation \
   -s reservation/M332228177.json.sig \
   < reservation/M332228177.json
+ssh-keygen -Y verify \
+  -f reservation/allowed_signers \
+  -I nadermx \
+  -n eff-prime-reservation-extension \
+  -s reservation/M332228177-extension-20260805.json.sig \
+  < reservation/M332228177-extension-20260805.json
 sha256sum -c MANIFEST.sha256
 ```
 

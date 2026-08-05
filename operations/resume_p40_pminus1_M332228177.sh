@@ -9,6 +9,13 @@ if [ "$PWD" != "$expected_directory" ]; then
     exit 64
 fi
 
+expected_gpu_uuid="GPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2"
+actual_gpu_uuid="$(nvidia-smi --query-gpu=uuid --format=csv,noheader | head -n 1)"
+if [ "$actual_gpu_uuid" != "$expected_gpu_uuid" ]; then
+    echo "refusing unexpected GPU UUID: $actual_gpu_uuid" >&2
+    exit 69
+fi
+
 if [ -f exit_status.txt ] && [ "$(cat exit_status.txt)" = "0" ]; then
     echo "clean result already recorded; refusing to repeat completed P-1 work" >&2
     exit 0
