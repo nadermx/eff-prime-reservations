@@ -28,6 +28,10 @@ Current public progress:
 These are active search records, not a probable-prime result, deterministic
 Lucas-Lehmer proof, discovery announcement, or award claim.
 
+The accompanying research bundle also includes a lazy segmented prime stream
+and independent million-prefix verifier.  It constructively enumerates every
+prime eventually, but makes no claim to jump to the 100-million-digit scale.
+
 This is a non-duplication notice, not a claim of primality, discovery,
 coordinator assignment, award eligibility, or ownership of the integer.  The
 search is independent and does not submit work to PrimeNet.
