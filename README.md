@@ -1,10 +1,17 @@
 # Independent Mersenne reservation
 
-This repository publicly reserves exactly `M332228177 = 2^332228177-1` for an
-independent search by Johnathan Nader (`@nadermx`).  It reserves no surrounding
-range.  A signed extension published after the slow P40 path was measured now
-expires at `2027-01-15T04:06:06Z` unless a result or later bounded extension is
-published first.
+This repository publicly reserves two exact exponents, and no surrounding
+range, for an independent search by Johnathan Nader (`@nadermx`):
+
+- active candidate `M332228177 = 2^332228177-1`, extended through
+  `2027-01-15T04:06:06Z`;
+- queued candidate `M332228213 = 2^332228213-1`, reserved through
+  `2027-01-31T22:05:49Z`.
+
+The second candidate cannot start until the first candidate's active P-1 pass
+has been independently classified, the assigned P40 is idle, and a fresh
+post-publication official status gate passes.  Its reviewed first action is a
+fixed deeper P-1 pass, not cold PRP or further TF on the first candidate.
 
 The reservation was prepared only after a fresh official status fetch reported
 no known factor, no primality result, and no assignment record.  The complete
@@ -56,6 +63,12 @@ ssh-keygen -Y verify \
   -n eff-prime-reservation-extension \
   -s reservation/M332228177-extension-20260805.json.sig \
   < reservation/M332228177-extension-20260805.json
+ssh-keygen -Y verify \
+  -f reservation/allowed_signers \
+  -I nadermx \
+  -n eff-prime-reservation \
+  -s reservation/M332228213.json.sig \
+  < reservation/M332228213.json
 sha256sum -c MANIFEST.sha256
 ```
 

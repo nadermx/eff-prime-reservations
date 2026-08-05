@@ -1,0 +1,39 @@
+{
+  "current_candidate_tf": {
+    "expected_current_prp_hours_saved": 13.50985420409122,
+    "heuristic_factor_probability": 0.012345679012345678,
+    "modeled_cost_effective": false,
+    "net_expected_p40_hours_saved": -11.49014579590878,
+    "p40_cost_hours": 25.0
+  },
+  "current_prp": {
+    "remaining_days": 46.1165912721412,
+    "remaining_iterations": 327428177
+  },
+  "decision": "second_candidate_deeper_pminus1_then_prp",
+  "inputs": {
+    "current_exponent": 332228177,
+    "current_iteration": 4800000,
+    "p40_prp_us_per_iteration": 12169.0,
+    "pminus1_analysis": "runs/post-pminus1-allocation-20260805T2208Z/M332228213-pminus1-analysis.json",
+    "pminus1_strategy": 0,
+    "second_exponent": 332228213,
+    "tf_lower_bit": 81,
+    "tf_measured_seconds": 90000.0
+  },
+  "proof_policy": "PRP remains a composite screen; a P result requires a separate deterministic Lucas-Lehmer run and independent verification.",
+  "schema": "eff.post-pminus1-allocation.v1",
+  "second_candidate_cold_prp": {
+    "modeled_days": 46.79265189811342
+  },
+  "second_candidate_pminus1": {
+    "b1": 1495000,
+    "b2": 32142500,
+    "expected_second_prp_hours_saved": 27.545296538475636,
+    "heuristic_conditional_factor_probability": 0.024527797475599477,
+    "modeled_cost_effective": true,
+    "net_expected_p40_hours_saved": 4.031395840834396,
+    "p40_cost_hours": 23.51390069764124
+  },
+  "warning": "Timings derive from measurements; all factor probabilities are heuristic and no screen is evidence of primality."
+}

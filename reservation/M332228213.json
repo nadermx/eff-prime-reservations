@@ -1,0 +1,60 @@
+{
+  "schema": "eff-independent-mersenne-reservation-v1",
+  "reservation_id": "nadermx-M332228213-20260805T220549Z",
+  "created_utc": "2026-08-05T22:05:49Z",
+  "expires_utc": "2027-01-31T22:05:49Z",
+  "reservation_identity": {
+    "display_name": "Johnathan Nader",
+    "github_account": "nadermx",
+    "github_url": "https://github.com/nadermx",
+    "signer_identity": "nadermx",
+    "ssh_ed25519_fingerprint": "SHA256:kIrmryTIjAGaDQ6t4Gt2dkwarr6jgnVsEg/uDZQk5jQ"
+  },
+  "candidate": {
+    "form": "2^p-1",
+    "exponent": 332228213,
+    "exact_integer": "2^332228213-1",
+    "decimal_digits": 100010658,
+    "exponent_is_prime": true
+  },
+  "fresh_public_status": {
+    "fetched_utc": "2026-08-05T22:05:23Z",
+    "published_status": "untested_no_known_factor",
+    "assignment_record_present": false,
+    "no_factor_to_bits": 81,
+    "tf_target_bits": 81,
+    "historical_pminus1_b1": 100000,
+    "historical_pminus1_b2": 1000000,
+    "preflight_json_sha256": "255846f6539d9141bf310898715a06c517ada27862967f0efc7c6693a3e1de9a",
+    "official_detailed_sha256": "d9a38878fe5f381cc5d135efcca321b5fe5fb1c38f626f79abbe8cbdee71f7f0",
+    "official_factoring_sha256": "cf91ac43eeb727caca270871d27e78ad269766168835617f1fc23f2017046d00",
+    "official_detailed_url": "https://www.mersenne.org/report_exponent/?exp_lo=332228213",
+    "official_factoring_url": "https://www.mersenne.org/report_exponent_simple/?exp_lo=332228213&faclim=1&json=1"
+  },
+  "pminus1_review": {
+    "completed": true,
+    "selected_upgrade_b1": 1495000,
+    "selected_upgrade_b2": 32142500,
+    "selected_upgrade_modeled_p40_hours": 23.51390069764124,
+    "incremental_conditional_factor_probability_heuristic": 0.024527797475599477,
+    "expected_p40_prp_hours_saved_heuristic": 27.545296538475636,
+    "net_expected_p40_hours_saved_heuristic": 4.031395840834396,
+    "model_sha256": "46c520c270ed4faae4403c4bc0e0516de1252d026a45c768699cd244e3bda061",
+    "allocation_sha256": "adda67271c79b8a35f7e35a62e35657169d7354e402db1a395b81cfa5852190d",
+    "warning": "Probability and runtime projections are heuristic; a no-factor outcome is not evidence of primality."
+  },
+  "ledger": {
+    "status_snapshot_record_sha256": "2d89f06dae320e216061e13ff5d9822c05e41a3e262be542962e3b5016aa4d20",
+    "ledger_path": "ledger/mersenne_candidates.jsonl",
+    "correction_disclosure": "Ledger sequence 18 explicitly corrects the mistyped evidence hash in sequence 17 before this reservation."
+  },
+  "reservation_scope": {
+    "route": "independent Mersenne computation; not a PrimeNet assignment",
+    "exact_exponents_only": [332228213],
+    "intent": "Avoid duplicated computation while the reserving project performs deeper P-1 screening, PRP, and deterministic Lucas-Lehmer proof if warranted.",
+    "resource_gate": "No work may start until the live M332228177 P-1 pass is independently classified and VM101 is idle on the expected Tesla P40 UUID.",
+    "start_gate": "Official status must be fetched again after publication and immediately before work; any assignment, factor, or result voids this reservation before work starts.",
+    "result_policy": "A factor, PRP result, Lucas-Lehmer residue, relinquishment, or expiry will be published in this repository.",
+    "non_claim": "This reservation is not a claim that the number is prime, a discovery announcement, a coordinator assignment, or an EFF award claim."
+  }
+}
