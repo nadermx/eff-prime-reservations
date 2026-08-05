@@ -1,0 +1,39 @@
+{
+  "assignment_record_present": false,
+  "eligible_for_manual_reservation_review": true,
+  "exponent": 332228447,
+  "fetched_utc": "2026-08-05T23:14:43Z",
+  "local_deterministic_presieve": {
+    "euler_q_equals_2p_plus_1": {
+      "criterion_applicable": false,
+      "exponent_mod_4": 3,
+      "factor_candidate": 664456895,
+      "factor_candidate_is_prime": false,
+      "factor_congruence_verified": false
+    }
+  },
+  "manual_review_reasons": [],
+  "mersenne_decimal_digits": 100010728,
+  "no_factor_to_bits": 81,
+  "official_sources": {
+    "detailed_sha256": "d93c73d87b0ffb481527d9563084d9747af49f245fe9196d5719790796894bc2",
+    "detailed_url": "https://www.mersenne.org/report_exponent/?exp_lo=332228447",
+    "factoring_sha256": "6f67ae6783c6d0e40cef066ff7fd055b1ebe2b4e3069086a34870534446e673a",
+    "factoring_url": "https://www.mersenne.org/report_exponent_simple/?exp_lo=332228447&faclim=1&json=1"
+  },
+  "pminus1_current_b1": 100000,
+  "pminus1_current_b2": 1000000,
+  "prime_exponent": true,
+  "published_status": "untested_no_known_factor",
+  "ready_to_start_computation": false,
+  "schema": "eff-mersenne-preflight-v1",
+  "scope": "read-only public-status snapshot; not a reservation, assignment, or authorization",
+  "start_blockers": [
+    "This read-only snapshot is not an authoritative reservation or assignment.",
+    "P-1 adequacy and bounds require an authoritative assignment or manual review.",
+    "Status must be fetched again immediately before any reservation and before work starts."
+  ],
+  "status_excerpt": "href=\"https://www.mersenne.ca/exponent/332228447\" style=\"color: #000000;\"> 332 228 447 No known factors, not tested for primality No factors below 2 81 TF target 2 81 P-1 B1 = 100 000 B2 = 1 000 000 History Date User Type Result 2023-10-18 James Heinrich NF no factor TF: 67-68 2019-11-18 MadPoo \ud83d\ude42 NF-PM1 B1=100000, B2=1000000 2012-08-05 c10ck3r NF-PM1 B1=100000 2012-08-05 c10ck3r NF-PM1 B1=10000, B2=25000 2011-05-23 Gary Barnes NF no factor TF: 80-81 2011-05-23 Gary Barnes NF no factor TF: 79-80 2011-05-23 Gary Barnes NF no factor TF: 78-79 2011-05-23 Gary Barnes NF no factor TF: 77-78 2011-05-23 Gary Barnes NF no factor TF: 76-77 2011-05-23 Gary Barnes NF no factor TF: 75-76 2011-04-12 Christian Geschwentner NF no factor TF: 74-75 2011-01-01 Team_Inspector NF no factor TF: 73-74 2010-11-16 Team_Inspector NF no factor TF: 72-73 2010-02-16 Team_Inspector NF no factor TF: 71-72 2010-02-16 Team_Inspector NF no factor TF: 70-71 2009-03-12 Team_Inspector NF no factor TF: 69-70 2009-01-02 Team_Inspector NF no factor TF: 68-69 \u00a91996-2026 Mersenne Research, Inc. Current time: 2026-08-05 23:14 UTC - Page rendered in 0.0268s function googleTranslateElementInit() { new google.translate.Transla",
+  "target_decimal_digits": 100000000,
+  "tf_target_bits": 81
+}

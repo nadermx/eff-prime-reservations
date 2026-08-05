@@ -1,0 +1,58 @@
+{
+  "schema": "eff-independent-mersenne-reservation-v1",
+  "reservation_id": "nadermx-M332228447-20260805T231608Z",
+  "created_utc": "2026-08-05T23:16:08Z",
+  "expires_utc": "2027-01-31T23:16:08Z",
+  "reservation_identity": {
+    "display_name": "Johnathan Nader",
+    "github_account": "nadermx",
+    "github_url": "https://github.com/nadermx",
+    "signer_identity": "nadermx",
+    "ssh_ed25519_fingerprint": "SHA256:kIrmryTIjAGaDQ6t4Gt2dkwarr6jgnVsEg/uDZQk5jQ"
+  },
+  "candidate": {
+    "form": "2^p-1",
+    "exponent": 332228447,
+    "exact_integer": "2^332228447-1",
+    "decimal_digits": 100010728,
+    "exponent_is_prime": true
+  },
+  "fresh_public_status": {
+    "fetched_utc": "2026-08-05T23:14:43Z",
+    "published_status": "untested_no_known_factor",
+    "assignment_record_present": false,
+    "no_factor_to_bits": 81,
+    "tf_target_bits": 81,
+    "historical_pminus1_b1": 100000,
+    "historical_pminus1_b2": 1000000,
+    "preflight_json_sha256": "76eafca76d4d13098d0b67f10757820360607fdbfd0ff98c0300eada7a108411",
+    "official_detailed_sha256": "d93c73d87b0ffb481527d9563084d9747af49f245fe9196d5719790796894bc2",
+    "official_factoring_sha256": "6f67ae6783c6d0e40cef066ff7fd055b1ebe2b4e3069086a34870534446e673a",
+    "official_detailed_url": "https://www.mersenne.org/report_exponent/?exp_lo=332228447",
+    "official_factoring_url": "https://www.mersenne.org/report_exponent_simple/?exp_lo=332228447&faclim=1&json=1"
+  },
+  "pminus1_review": {
+    "completed": true,
+    "selected_upgrade_b1": 1495000,
+    "selected_upgrade_b2": 32142500,
+    "selected_upgrade_modeled_p40_hours": 23.51390069764124,
+    "incremental_conditional_factor_probability_heuristic": 0.024527799212982968,
+    "expected_p40_prp_hours_saved_heuristic": 27.541971402668015,
+    "net_expected_p40_hours_saved_heuristic": 4.028070705026774,
+    "model_sha256": "998b9fe344ee2b2300211b19da5cc77fb4513f77944c7fbbc3997a46a7cb005d",
+    "warning": "Probability and runtime projections are heuristic; a no-factor outcome is not evidence of primality."
+  },
+  "ledger": {
+    "status_snapshot_record_sha256": "aca656a4f5261f087563da55700d03396cec4a1216a5f8ca8f3e75a6be869fcf",
+    "ledger_path": "ledger/mersenne_candidates.jsonl"
+  },
+  "reservation_scope": {
+    "route": "independent Mersenne computation; not a PrimeNet assignment",
+    "exact_exponents_only": [332228447],
+    "intent": "Avoid duplicated computation while this project completes earlier exact reserved lanes and prepares deeper P-1, PRP, and deterministic Lucas-Lehmer proof if warranted.",
+    "resource_gate": "No work may start until a validated P40 is idle after the earlier reserved lanes and a fresh measured allocation review selects this candidate.",
+    "start_gate": "Official status must be fetched again immediately before work; any assignment, factor, result, or expiry voids this reservation before work starts.",
+    "result_policy": "A factor, PRP result, Lucas-Lehmer residue, relinquishment, or expiry will be published in the reservation repository.",
+    "non_claim": "This reservation is not a claim that the number is prime, a discovery announcement, a coordinator assignment, or an EFF award claim."
+  }
+}

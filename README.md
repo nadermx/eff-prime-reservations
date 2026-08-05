@@ -1,17 +1,22 @@
 # Independent Mersenne reservation
 
-This repository publicly reserves two exact exponents, and no surrounding
+This repository publicly reserves three exact exponents, and no surrounding
 range, for an independent search by Johnathan Nader (`@nadermx`):
 
 - active candidate `M332228177 = 2^332228177-1`, extended through
   `2027-01-15T04:06:06Z`;
 - queued candidate `M332228213 = 2^332228213-1`, reserved through
-  `2027-01-31T22:05:49Z`.
+  `2027-01-31T22:05:49Z`;
+- backup candidate `M332228447 = 2^332228447-1`, reserved through
+  `2027-01-31T23:16:08Z`.
 
 The second candidate cannot start until the first candidate's active P-1 pass
 has been independently classified, the assigned P40 is idle, and a fresh
 post-publication official status gate passes.  Its reviewed first action is a
 fixed deeper P-1 pass, not cold PRP or further TF on the first candidate.
+The third candidate cannot start until a prior P40 lane is terminal and idle,
+a fresh official status gate passes, and a new measured allocation selects it.
+Its retained deep P-1 model is heuristic planning, not work authorization.
 
 The reservation was prepared only after a fresh official status fetch reported
 no known factor, no primality result, and no assignment record.  The complete
@@ -69,8 +74,14 @@ ssh-keygen -Y verify \
   -n eff-prime-reservation \
   -s reservation/M332228213.json.sig \
   < reservation/M332228213.json
+ssh-keygen -Y verify \
+  -f reservation/allowed_signers \
+  -I nadermx \
+  -n eff-prime-reservation \
+  -s reservation/M332228447.json.sig \
+  < reservation/M332228447.json
 sha256sum -c MANIFEST.sha256
 ```
 
-The exact scope and safety gates are machine-readable in
-`reservation/M332228177.json`.
+The exact scopes and safety gates are machine-readable in the three reservation
+documents.
