@@ -9,7 +9,8 @@ import subprocess
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parent
+SCRIPT_DIR = Path(__file__).resolve().parent
+ROOT = SCRIPT_DIR.parent if SCRIPT_DIR.name == "verifiers" else SCRIPT_DIR
 
 
 def digest(path: Path) -> str:
@@ -44,7 +45,11 @@ def main() -> int:
             check=True,
         )
 
-    snapshot = ROOT / "runs/pre-reservation-M332228213-20260805T2208Z"
+    snapshot = (
+        ROOT / "evidence/pre-reservation-M332228213-20260805T2208Z"
+        if ROOT.name == "deliverables"
+        else ROOT / "runs/pre-reservation-M332228213-20260805T2208Z"
+    )
     subprocess.run(["sha256sum", "-c", "MANIFEST.sha256"], cwd=snapshot, check=True,
                    stdout=subprocess.DEVNULL)
     preflight = json.loads((snapshot / "preflight.json").read_text())
@@ -53,8 +58,13 @@ def main() -> int:
     require(preflight["published_status"] == "untested_no_known_factor", "status")
     require(digest(snapshot / "preflight.json") == reservation["fresh_public_status"]["preflight_json_sha256"], "snapshot binding")
 
-    model = json.loads((ROOT / "runs/post-pminus1-allocation-20260805T2208Z/M332228213-pminus1-analysis.json").read_text())
-    allocation = json.loads((ROOT / "runs/post-pminus1-allocation-20260805T2208Z/allocation.json").read_text())
+    allocation_root = (
+        ROOT / "evidence/post-pminus1-allocation-20260805T2208Z"
+        if ROOT.name == "deliverables"
+        else ROOT / "runs/post-pminus1-allocation-20260805T2208Z"
+    )
+    model = json.loads((allocation_root / "M332228213-pminus1-analysis.json").read_text())
+    allocation = json.loads((allocation_root / "allocation.json").read_text())
     require(model["exponent"] == 332228213, "model exponent")
     require(model["strategies"][0]["b1"] == 1495000, "P-1 B1")
     require(model["strategies"][0]["b2"] == 32142500, "P-1 B2")
@@ -71,7 +81,7 @@ def main() -> int:
     require(history[-1]["event"] == "reservation", "queued candidate must not be marked started")
     require(history[-1]["authority_reference"].endswith("83b3472f12e7d571a6aa43bc478154e42b604289"), "authority")
 
-    staging = json.loads((ROOT / "runs/post-pminus1-allocation-20260805T2208Z/vm101-queued-handoff-staging.json").read_text())
+    staging = json.loads((allocation_root / "vm101-queued-handoff-staging.json").read_text())
     require(staging["result"] == "STAGED_NOT_STARTED", "staging state")
     require(staging["fresh_preflight_directory_exists"] is False, "fresh status must be deferred")
     require(staging["gpu"]["uuid"] == "GPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2", "GPU UUID")
