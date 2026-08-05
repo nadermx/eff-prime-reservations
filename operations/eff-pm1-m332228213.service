@@ -1,0 +1,16 @@
+[Unit]
+Description=EFF independent M332228213 fixed-bound P-1
+After=network-online.target nvidia-persistenced.service
+Wants=network-online.target
+OnFailure=eff-pm1-m332228213-resume.service
+
+[Service]
+Type=exec
+WorkingDirectory=/root/eff-prime/runs/M332228213-pminus1-queued
+ExecStartPre=/bin/bash ./run.sh --preflight-only
+ExecStart=/bin/bash ./run.sh
+TimeoutStopSec=300
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target

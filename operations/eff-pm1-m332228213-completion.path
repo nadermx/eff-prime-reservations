@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch for M332228213 P-1 terminal status changes
+
+[Path]
+PathChanged=/root/eff-prime/runs/M332228213-pminus1-queued/exit_status.txt
+Unit=eff-pm1-m332228213-completion.service
+
+[Install]
+WantedBy=multi-user.target

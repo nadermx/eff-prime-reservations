@@ -1,0 +1,8 @@
+[Unit]
+Description=Fail-closed VM101 handoff to queued M332228213 P-1
+After=eff-pm1-m332228177-completion.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/root/eff-prime/runs/M332228213-pminus1-queued
+ExecStart=/bin/bash ./handoff.sh

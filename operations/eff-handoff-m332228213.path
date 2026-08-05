@@ -1,0 +1,9 @@
+[Unit]
+Description=Wait for classified M332228177 P-1 before queued handoff
+
+[Path]
+PathExists=/root/eff-prime/runs/M332228177-pminus1-20260805T0412Z/completion-receipt.json
+Unit=eff-handoff-m332228213.service
+
+[Install]
+WantedBy=multi-user.target

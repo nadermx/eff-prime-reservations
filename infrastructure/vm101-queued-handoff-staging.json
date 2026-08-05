@@ -1,0 +1,56 @@
+{
+  "captured_utc": "2026-08-05T22:14:05Z",
+  "fresh_preflight_directory_exists": false,
+  "gpu": {
+    "memory_used_mib": 17915,
+    "name": "Tesla P40",
+    "temperature_c": 35,
+    "utilization_percent": 100,
+    "uuid": "GPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2"
+  },
+  "host": "38.86.78.5",
+  "queued_exponent": 332228213,
+  "result": "STAGED_NOT_STARTED",
+  "schema": "eff.vm101-queued-handoff-staging.v1",
+  "scope": "Read-only staging receipt. The active predecessor computation was not interrupted; this is not a candidate result or primality claim.",
+  "staged_hashes": {
+    "/root/eff-prime/runs/M332228213-pminus1-queued/CUDAPm1-system-gmp": "fb23ce4e30aff26f495edb3ccf45a6c847f42e9a1d0889c3f739c36cca2b4ff7",
+    "/root/eff-prime/runs/M332228213-pminus1-queued/handoff.sh": "3f87fb42c8dcd225474bad64b98c8bda0a93b84691437416532594cb0d27c15c",
+    "/root/eff-prime/runs/M332228213-pminus1-queued/ledger/mersenne_candidates.jsonl": "878698039b02ec399c66ce0dd5cd9a61152240220d6f6fa44d463a83c4d70fa3",
+    "/root/eff-prime/runs/M332228213-pminus1-queued/reservation/M332228213.json": "ba99b88790245719a747b691aec9f32afa8fa0e5be2046575fbf3082e2b22d12",
+    "/root/eff-prime/runs/M332228213-pminus1-queued/run.sh": "c623023148ed790f973a5de4837c1eeafb4d6f7486788f2bee20b64534ce61c6",
+    "/root/eff-prime/runs/M332228213-pminus1-queued/worktodo.original.txt": "bfa33b45092dd792806f0a150a67a50d870657e1c4a153b00bb36b0abc9b7c0c"
+  },
+  "units": {
+    "eff-handoff-m332228213.path": {
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled"
+    },
+    "eff-pm1-m332228177-resume.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled"
+    },
+    "eff-pm1-m332228213-completion.path": {
+      "ActiveState": "active",
+      "SubState": "waiting",
+      "UnitFileState": "enabled"
+    },
+    "eff-pm1-m332228213.service": {
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "disabled"
+    },
+    "eff-prpll-billion-integrity-matrix.path": {
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "disabled"
+    },
+    "eff-tf-m332228177.path": {
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "UnitFileState": "disabled"
+    }
+  }
+}
