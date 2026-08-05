@@ -1,0 +1,25 @@
+CUDAPm1 v0.22
+No TeslaP40_fft.txt file found. Using default fft lengths.
+For optimal fft selection, please run
+./CUDAPm1 -cufftbench 1 8192 r
+for some small r, 0 < r < 6 e.g.
+CUDA reports 24288M of 24438M GPU memory free.
+Using threads: norm1 512, mult 32, norm2 1024.
+Using up to 24160M GPU memory.
+Starting stage 1 P-1, M332228177, B1 = 1495000, B2 = 32142500, fft length = 19208K
+Doing 2157487 iterations
+Iteration 10000 M332228177, 0xfd25d4bdbd033427, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:34 real, 21.4559 ms/iter, ETA 12:47:56)
+Iteration 20000 M332228177, 0xa9b0a126786abad8, n = 19208K, CUDAPm1 v0.22 err = 0.13281 (3:35 real, 21.4840 ms/iter, ETA 12:45:21)
+Iteration 30000 M332228177, 0xbcc58899fab020dc, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:35 real, 21.4932 ms/iter, ETA 12:42:06)
+Iteration 40000 M332228177, 0x7cdd15c54d3f9208, n = 19208K, CUDAPm1 v0.22 err = 0.13281 (3:35 real, 21.5005 ms/iter, ETA 12:38:47)
+Iteration 50000 M332228177, 0x8c9c84c5080bae9a, n = 19208K, CUDAPm1 v0.22 err = 0.12305 (3:35 real, 21.4961 ms/iter, ETA 12:35:02)
+Iteration 60000 M332228177, 0x62eb59489c5d0285, n = 19208K, CUDAPm1 v0.22 err = 0.12891 (3:35 real, 21.4899 ms/iter, ETA 12:31:14)
+Iteration 70000 M332228177, 0xc84cd84f7821bbc2, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:36 real, 21.5121 ms/iter, ETA 12:28:26)
+Iteration 80000 M332228177, 0xcb35b1dc6f76f357, n = 19208K, CUDAPm1 v0.22 err = 0.13281 (3:35 real, 21.5007 ms/iter, ETA 12:24:27)
+Iteration 90000 M332228177, 0xf8c07f6abaea6d57, n = 19208K, CUDAPm1 v0.22 err = 0.13281 (3:35 real, 21.4838 ms/iter, ETA 12:20:17)
+Iteration 100000 M332228177, 0xfdfb6af79fea4122, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:35 real, 21.4963 ms/iter, ETA 12:17:08)
+Iteration 110000 M332228177, 0xe4fdea95ca4ca10f, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:35 real, 21.5035 ms/iter, ETA 12:13:48)
+Iteration 120000 M332228177, 0x1151a2b5c32ed67f, n = 19208K, CUDAPm1 v0.22 err = 0.13281 (3:35 real, 21.5129 ms/iter, ETA 12:10:32)
+Iteration 130000 M332228177, 0xa28fbb43e3b805b7, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:35 real, 21.5287 ms/iter, ETA 12:07:29)
+Iteration 140000 M332228177, 0xa49918e617ab508f, n = 19208K, CUDAPm1 v0.22 err = 0.14844 (3:36 real, 21.5240 ms/iter, ETA 12:03:44)
+Iteration 150000 M332228177, 0xd2ad3f8895769988, n = 19208K, CUDAPm1 v0.22 err = 0.12617 (3:35 real, 21.5316 ms/iter, ETA 12:00:24)

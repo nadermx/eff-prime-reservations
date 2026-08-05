@@ -20,6 +20,8 @@ Current public progress:
   no known factor;
 - full checkpointed PRP began at `2026-08-05T04:50:53Z`;
 - its iteration-2,000 checkpoint was copied off-VM and SHA-256 verified.
+- P-1 later reached iteration 150,000, and its newer recovery checkpoint was
+  also copied off-VM and SHA-256 verified.
 
 These are active search records, not a probable-prime result, deterministic
 Lucas-Lehmer proof, discovery announcement, or award claim.

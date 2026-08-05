@@ -1,0 +1,14 @@
+Purpose: prove the staged post-P-1 P40 tuner cannot contend with live candidate work
+Worker: VM101 eff-prime-p40
+Expected tuning GPU: GPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2
+PRPLL OpenCL SHA-256: 04073474c66c374a7ef91c18b6b3c30a5bd726969b67707a533888812f44c27d
+Tuning runner SHA-256: 1be54978c4d1ec87196fc68186ce49250783e18ff4ffa059d06b97f427905011
+VM102 health receipt UTC: 2026-08-05T05:12:50Z
+VM102 state in receipt: active, zero restarts, exact GPU UUID
+Invocation: ./run.sh --preflight-only
+Expected exit while P-1 active: 64
+Observed exit: 64
+Observed guard message: refusing P40 tune: candidate P-1 service is still active
+Result: PASS; no tuner or validation arithmetic started
+Promotion policy: no automatic production change; exact residue and >=3% speed gate still required after P-1 ends
+Scope: operational safety validation, not candidate work or a primality result
