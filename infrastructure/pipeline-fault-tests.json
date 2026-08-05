@@ -3,10 +3,10 @@
     "digits": 100010658,
     "exponent": 332228213
   },
-  "captured_utc": "2026-08-05T23:08:50Z",
+  "captured_utc": "2026-08-05T23:22:10Z",
   "gpu_policy": {
     "h200_used": false,
-    "remote_live_state": "NRestarts=0\nId=eff-pm1-m332228177-resume.service\nActiveState=active\nSubState=running\n\nId=eff-handoff-m332228213.path\nActiveState=active\nSubState=waiting\n\nId=eff-handoff-m332228213-prp.path\nActiveState=active\nSubState=waiting\n\nNRestarts=0\nId=eff-pm1-m332228213.service\nActiveState=inactive\nSubState=dead\n\nNRestarts=0\nId=eff-prp-m332228213.service\nActiveState=inactive\nSubState=dead\nGPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2, Tesla P40, 100 %, 17915 MiB, 34\n",
+    "remote_live_state": "NRestarts=0\nId=eff-pm1-m332228177-resume.service\nActiveState=active\nSubState=running\n\nId=eff-handoff-m332228213.path\nActiveState=active\nSubState=waiting\n\nId=eff-handoff-m332228213-prp.path\nActiveState=active\nSubState=waiting\n\nNRestarts=0\nId=eff-pm1-m332228213.service\nActiveState=inactive\nSubState=dead\n\nNRestarts=0\nId=eff-prp-m332228213.service\nActiveState=inactive\nSubState=dead\nGPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2, Tesla P40, 100 %, 17915 MiB, 35\n",
     "selected_gpu": "Tesla P40"
   },
   "installed_unit_sha256": {
@@ -76,7 +76,7 @@
     "configs/eff-vm101-M332228213-pipeline-sync.timer": "cd99b61a0782bb222bb2707f3857fe1449aef601c66b4435e357c9417cdaecfb",
     "configs/eff-vm101-M332228213-proof-residue-backup.service": "f8bacecaca876660ae27d4edf076b384952b9b45e73a23316e6c675500419c7c",
     "configs/eff-vm101-M332228213-proof-residue-backup.timer": "555948523640c5231ff37fbaec7e47dd6cead5eb3808eff2223c33cc451feb75",
-    "ledger/mersenne_candidates.jsonl": "878698039b02ec399c66ce0dd5cd9a61152240220d6f6fa44d463a83c4d70fa3",
+    "ledger/mersenne_candidates.jsonl": "b195433ef1f70feaf999eba656fc2151bb4b866abaab5ff1ff76d04bdc056b9c",
     "reservation/M332228213.json": "ba99b88790245719a747b691aec9f32afa8fa0e5be2046575fbf3082e2b22d12",
     "reservation/M332228213.json.sig": "4ba4842253fd090a9724e08bd30231880389dfbe2c9b02806d74a2eb3b187112",
     "scripts/backup_vm101_M332228213_prp_proof_residues.sh": "eb8391dac82d2164ca4c88ed9075871134abdd622d7a22faa5b4616764e5da30",
@@ -94,10 +94,10 @@
   "tests": {
     "append_only_sync": {
       "later_local_retained": true,
-      "records": 20,
+      "records": 22,
       "remote_extension_installed": true,
       "valid_fork_rejected": true,
-      "verified_final_sha256": "878698039b02ec399c66ce0dd5cd9a61152240220d6f6fa44d463a83c4d70fa3"
+      "verified_final_sha256": "b195433ef1f70feaf999eba656fc2151bb4b866abaab5ff1ff76d04bdc056b9c"
     },
     "candidate_ledger": "PASS",
     "cross_candidate_ledger_ordering": {

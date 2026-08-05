@@ -41,7 +41,7 @@ def main() -> None:
         root / "runs/post-pminus1-allocation-20260805T2208Z"
     )
     receipt = json.loads((evidence / "pipeline-fault-tests.json").read_text())
-    staging = json.loads((evidence / "vm101-full-pipeline-staging-v4.json").read_text())
+    staging = json.loads((evidence / "vm101-full-pipeline-staging-v5.json").read_text())
 
     assert receipt["schema"] == "eff.M332228213-full-pipeline-fault-tests.v1"
     assert receipt["result"] == "PASS"

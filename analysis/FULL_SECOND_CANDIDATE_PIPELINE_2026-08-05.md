@@ -75,12 +75,13 @@ The compact verifier also binds the staged remote hashes back to the shareable
 source files and checks both the verified-factor stop branch and the
 completed-no-factor PRP branch.
 
-The retained v1/v2/v3 staging receipts are audit history, not current authority.
+The retained v1/v2/v3/v4 staging receipts are audit history, not current authority.
 V2 removed a receipt-publication race; the subsequent state-machine replay
 showed that no-factor must be a nonterminal `checkpoint`, not terminal
 `result`. V3 binds both corrections. V4 additionally binds the single-writer
 cross-candidate ordering and verified-factor PRP early-abort guard before
-arithmetic started.
+arithmetic started. V5 binds the later backup reservation into the exact
+canonical ledger staged on VM101 before the predecessor terminal transition.
 
 ## Reproduction
 
@@ -99,11 +100,11 @@ PASS M332228213 full P-1/PRP pipeline: P40-only, both negative predecessor gates
 Evidence hashes at capture:
 
 - full VM101 staging receipt:
-  `40b2bf48cdfa73b56b4f78aa3633a07e05d07f90f41bf57f89df998e2bf24115`;
+  `f3a30af6c7d0e4e685571811930f668e0d0aab0e4dad04fb1103ade97c173aa2`;
 - pipeline fault-test receipt:
-  `7e5f6c3db20e676203bef1f146d67680fec3c21e07872731d3e6b65395bd5779`;
+  `440b41126005584c2b5c0ee72d52e2c65c2c3f7770d631c0428e035993044350`;
 - verifier:
-  `474c8d971fa19f6e70b9fa07e3efab3ef2f847f0018fb1cb68e91a7ee935c629`.
+  `14827429ae4b5d79604772387d42599f7f9acd2c16059a27130b788c9c33cafa`.
 
 ## Scope boundary
 
