@@ -4,8 +4,11 @@ Date: 2026-08-05 UTC
 
 ## Verdict
 
-No algebraic root shortcut was found that replaces a threshold-size
-Lucas--Lehmer or deterministic special-form test.  The useful adaptation is
+No exact *modular runtime* root shortcut was found that replaces a
+threshold-size Lucas--Lehmer or deterministic special-form test. A later
+adversarial audit did find an exact real continuous iteration/Abel translation;
+`CALCULUS_GEOMETRY_FALSIFICATION_2026-08-05.md` records why it does not yet
+evaluate the modular endpoint faster. The useful production adaptation is
 an **early-abort portfolio**: run independent trial factoring and Pollard P-1
 on spare hardware while the fastest GPU runs the sequential primality test.
 If either factor lane succeeds, its output is a tiny deterministic certificate
@@ -168,17 +171,63 @@ No row below is authorized before fresh status and public reservation.
 
 1. Record the reservation and exact candidate/status snapshot in the signed
    append-only ledger.
-2. Start the fastest checkpointed RTX PRP immediately.
+2. Start the fastest available validated checkpointed PRP immediately. VM102's
+   P40 retains that protected lane. The local RTX's PID-less context later
+   cleared without a reset and passed a fresh exact-residue/thermal gate.
 3. On the spare P40, run exactly the fixed one-test P-1 plan
    `B1=1,495,000`, `B2=32,142,500` in `CUDAPM1_ONE_SHOT=1` mode.  This is a
    full rerun because no compatible historical checkpoint exists; that
    duplicated cost is included in the 23.51-hour model.
-4. If P-1 finds no factor, run TF `2^81..2^82` on the same spare P40.
+4. Run TF `2^81..2^82` concurrently only while its lane remains healthy. The
+   local RTX retained 2.2% before its guarded thermal stop exposed a driver
+   failure. Keep that local service disabled and let the same-range P40
+   handoff wait for its P-1 and integrity-matrix gates.
 5. If a factor is found, verify it with the independent exact-integer tool,
    publish the factor certificate, and stop the PRP cleanly.
 6. If both factor lanes fail, retain their completed bounds and allow the PRP
    to continue.  A probable-prime hit still requires Lucas--Lehmer and distinct
    independent verification.
+
+## Local lane fail-closed; post-P-1 handoff enabled as fallback
+
+The schedule is now executable rather than aspirational. VM101 retains a
+path/service handoff for exactly TF bits 81 through 82. It will proceed only
+after all of these fail-closed gates pass:
+
+1. P-1 has a zero-exit `completed_no_factor_report` receipt with the exact
+   exponent and `B1/B2`, plus matching completion provenance.
+2. The bounded billion-backend matrix has `FINISHED` and its absolute manifest
+   verifies.
+3. The exact Tesla P40 UUID is idle and has no compute process.
+4. The signed reservation and extension still verify.
+5. A fresh official status fetch still reports untested, unassigned, no known
+   factor, and no completed TF through bit 82.
+
+The runner invokes official `mfaktc 0.24.1` as
+`-tf 332228177 81 82`. Its classifier requires one exact JSON result, matching
+log/CRC, `rangecomplete=true`, and the expected software identity. A reported
+factor must independently satisfy `2^p mod q=1`; a no-factor record certifies
+only the bounded interval.
+
+A live premature-start test exited 64 solely because the P-1 receipt is absent.
+It started no `mfaktc` process, changed no GPU state, and left P-1 active with
+zero restarts. Synthetic no-factor, known-factor, bad-CRC, bad-factor, and
+incomplete-range branches all pass their expected accept/reject tests.
+
+After the local RTX recovered without a reset, a fresh 10,000-iteration test
+reproduced residue `bff6cc96e2010c5c` with an 85 C maximum. The exact active
+candidate then passed a new public-status gate and started mfaktc bits 81..82.
+At the immutable launch snapshot it had passed self-test, reached 1.1%, made a
+stable checkpoint, and remained active with zero restarts. The service then
+stopped after three consecutive 89 C samples. mfaktc completed class 88 and
+retained a 2.2% checkpoint, but the cooled restart returned NVIDIA `Unknown
+Error`/`No devices found`. The local service was stopped and disabled without
+a GPU reset or reboot. The P40 path is re-enabled and waiting; VM101 P-1 was
+unchanged and active.
+
+Euler's special `q=2p+1` factor criterion is also now part of every future
+candidate preflight. It forces a factor when `p=3 mod 4` and `2p+1` is prime;
+the live exponent is `1 mod 4`, so the gate correctly does not claim a hit.
 
 ## Reproducible artifacts
 
@@ -187,8 +236,12 @@ No row below is authorized before fresh status and public reservation.
 - `tools/plan_factor_first.py`: explicit TF heuristic/economic gate
 - `tools/cudapm1_checkpoint_gcd.py`: independent system-GMP checkpoint GCD
 - `tools/analyze_pminus1_upgrade.py`: historical-bound correction and runtime model
+- `tools/classify_mfaktc_tf_result.py`: exact result/log/CRC classifier
 - `verify_factor_first.py`: valid/tampered certificate and planner tests
+- `verify_post_pminus1_tf_handoff.py`: staged handoff and branch tests
 - `patches/cudapm1-system-gmp-cuda12.patch`: CUDA 12.4/system-GMP port
+- `scripts/run_p40_tf_M332228177.sh`: guarded bounded TF runner
+- `configs/eff-tf-m332228177.service` and `.path`: waiting handoff units
 - `runs/mfaktc-local-threshold-probe-sieve2047-20260805T024301Z/`
 - `runs/mfaktc-p40-validation-20260805T025104Z/`
 - `runs/cudapm1-p40-validation-20260805T025842Z/`
@@ -203,5 +256,6 @@ The probability inputs come from the GIMPS mathematics description:
 ## Qualification
 
 This is a measured optimization and a closed invalid shortcut, not a prime
-discovery.  No candidate work, probable-prime result, primality proof,
-publication, or EFF claim has occurred.
+discovery. Candidate P-1 and PRP work is active. The local TF range is
+incomplete and the P40 handoff is staged, enabled, and has not started. No
+probable-prime result, primality proof, publication, or EFF claim has occurred.

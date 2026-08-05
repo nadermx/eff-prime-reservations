@@ -1,5 +1,8 @@
 #!/bin/bash
 # Reboot/failure-only resume wrapper; the initial launch uses run.sh.
+# Stage 2 is capped at nrp2=120 after the automatic nrp=138 layout consumed
+# 24.16 GB and reproducibly faulted immediately after initialization.  The
+# lower cap leaves about 4 GB of P40 VRAM headroom and does not change B1/B2.
 
 set -u
 
@@ -62,7 +65,7 @@ set +e
 /usr/bin/time -v env \
     CUDAPM1_ONE_SHOT=1 \
     LD_LIBRARY_PATH="$runtime_library_path" \
-    ./CUDAPm1-system-gmp -d 0 -i CUDAPm1.ini -f 19208K worktodo.txt \
+    ./CUDAPm1-system-gmp -d 0 -i CUDAPm1.ini -f 19208K -nrp2 120 worktodo.txt \
     >> run.log 2>> run.time
 resume_status=$?
 set -e

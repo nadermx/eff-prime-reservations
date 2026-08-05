@@ -40,8 +40,24 @@ python3 /root/eff-prime/cudapm1/classify_cudapm1_result.py run.log \
 date -u +%Y-%m-%dT%H:%M:%SZ > completion-captured_utc.txt
 completion_files=(
     completion-receipt.json completion-classifier.stdout exit_status.txt
-    run.log run.time ended_utc.txt after_gpu.csv
+    run.log run.time
 )
+if [ -f resume_ended_utc.txt ] || [ -f resume_after_gpu.csv ]; then
+    [ -f resume_started_utc.txt ] || fail "resume start timestamps are absent"
+    [ -f resume_ended_utc.txt ] || fail "resume end timestamps are absent"
+    [ -f resume_before_gpu.csv ] || fail "resume pre-run telemetry is absent"
+    [ -f resume_after_gpu.csv ] || fail "resume post-run telemetry is absent"
+    [ -f resume-checkpoint-metadata.json ] || fail "resume checkpoint metadata is absent"
+    completion_files+=(
+        resume_started_utc.txt resume_ended_utc.txt
+        resume_before_gpu.csv resume_after_gpu.csv
+        resume-checkpoint-metadata.json resume.sh
+    )
+else
+    [ -f ended_utc.txt ] || fail "initial-run end timestamp is absent"
+    [ -f after_gpu.csv ] || fail "initial-run post-run telemetry is absent"
+    completion_files+=(ended_utc.txt after_gpu.csv)
+fi
 if [ -f factor-certificate.json ]; then
     completion_files+=(factor-certificate.json)
 fi
