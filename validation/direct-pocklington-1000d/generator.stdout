@@ -1,0 +1,2 @@
+PASS constructed and certified 1000-digit prime in 10 Pocklington steps
+certificate=runs/direct-pocklington-1000d-20260805T0538Z/certificate.json

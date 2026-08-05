@@ -32,6 +32,11 @@ The accompanying research bundle also includes a lazy segmented prime stream
 and independent million-prefix verifier.  It constructively enumerates every
 prime eventually, but makes no claim to jump to the 100-million-digit scale.
 
+The corrected direct-prime lane separately defines a canonical `D`-digit prime
+and retains a real 1,000-digit, ten-step Pocklington construction with an
+independent verifier.  Its final multiplier was still selected by search, so it
+is proof-layer evidence rather than a no-search EFF-scale constructor.
+
 This is a non-duplication notice, not a claim of primality, discovery,
 coordinator assignment, award eligibility, or ownership of the integer.  The
 search is independent and does not submit work to PrimeNet.
