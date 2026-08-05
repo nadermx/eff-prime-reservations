@@ -1,0 +1,19 @@
+[Unit]
+Description=Resume EFF independent M332228177 P-1 after reboot or launch failure
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=3600
+StartLimitBurst=3
+ConditionPathExists=/root/eff-prime/runs/M332228177-pminus1-20260805T0412Z/c332228177s1
+
+[Service]
+Type=exec
+WorkingDirectory=/root/eff-prime/runs/M332228177-pminus1-20260805T0412Z
+ExecStart=/bin/bash ./resume.sh
+Restart=on-failure
+RestartSec=60
+TimeoutStopSec=300
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target

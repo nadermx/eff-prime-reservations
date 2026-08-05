@@ -1,0 +1,33 @@
+enabled
+inactive
+MainPID=7848
+Id=eff-pm1-m332228177.service
+OnFailure=eff-pm1-m332228177-resume.service
+ActiveState=active
+SubState=running
+FragmentPath=/run/systemd/transient/eff-pm1-m332228177.service
+# /etc/systemd/system/eff-pm1-m332228177-resume.service
+[Unit]
+Description=Resume EFF independent M332228177 P-1 after reboot or launch failure
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=3600
+StartLimitBurst=3
+ConditionPathExists=/root/eff-prime/runs/M332228177-pminus1-20260805T0412Z/c332228177s1
+
+[Service]
+Type=exec
+WorkingDirectory=/root/eff-prime/runs/M332228177-pminus1-20260805T0412Z
+ExecStart=/bin/bash ./resume.sh
+Restart=on-failure
+RestartSec=60
+TimeoutStopSec=300
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target
+21a104ef695529ba24f7cd43aafd26e55cb5dbda57d361c5ca6d0f3e596d9ac8  /root/eff-prime/runs/M332228177-pminus1-20260805T0412Z/resume.sh
+fc1bbd2d69631a57bdd6498890d75a5625c82a687be0fb001e31f4d7563223da  /etc/systemd/system/eff-pm1-m332228177-resume.service
+5a1767d6294f9b4c3246471af469db39b5cf1badcaefa43306f967ef3fb6a373  /etc/systemd/system/eff-pm1-m332228177.service.d/onfailure.conf
+7865 ./CUDAPm1-system-gmp -d 0 -i CUDAPm1.ini -f 19208K worktodo.txt
+2026/08/05 04:24:00.280, GPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2, 100 %, 805 MiB, 125.62 W, 35
