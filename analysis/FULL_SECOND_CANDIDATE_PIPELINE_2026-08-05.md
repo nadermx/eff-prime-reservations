@@ -32,6 +32,20 @@ The signed exact-exponent reservation has SHA-256
 | A transition marker does not exist | The local evidence synchronizer copies nothing |
 | The PRP service/proof directory does not exist | The off-VM proof backup exits successfully without manufacturing evidence |
 
+Candidate 1 also has a cross-host early-abort guard. Every two minutes it
+waits for the completed VM101 receipt/provenance marker. A no-factor receipt
+must leave VM102 PRP active. A factor must match the receipt and certificate
+hash and independently satisfy `2^332228177 mod q = 1` before the exact PRP
+service can be stopped and disabled. The guard writes a recoverable stop
+intent before stopping, preserves VM102 before/after snapshots, and never
+writes the candidate ledger itself.
+
+VM101 is the sole ledger writer for the terminal transition. It appends
+candidate 1's nonterminal `checkpoint` or terminal `result`, publishes
+`predecessor-ledger-published.txt`, and only then appends candidate 2's fresh
+status/work records. The local synchronizer consumes that canonical order,
+preventing two individually valid writers from forking the chain.
+
 The PRP launcher requires at least 100,000,000,000 available bytes before its
 first run. The staging receipt recorded 116,919,554,048 bytes available. It
 also recorded both handoff paths active/waiting, both candidate-2 compute
@@ -50,6 +64,10 @@ The executable fault-test receipt records:
 - rejection of two individually valid but divergent ledger children;
 - admission of a fresh status and PRP lane after a no-factor `checkpoint`;
 - rejection of any later status/lane after a verified-factor `result`;
+- both canonical cross-candidate orders: predecessor `checkpoint`/`result`
+  followed by candidate 2 status/work;
+- a successful preterminal no-op by the enabled two-minute verified-factor
+  early-abort guard;
 - enabled/waiting five-minute evidence-sync and ten-minute proof-backup timers;
 - an active predecessor on the selected Tesla P40 and no candidate-2 start.
 
@@ -57,11 +75,12 @@ The compact verifier also binds the staged remote hashes back to the shareable
 source files and checks both the verified-factor stop branch and the
 completed-no-factor PRP branch.
 
-The retained v1/v2 staging receipts are audit history, not current authority.
+The retained v1/v2/v3 staging receipts are audit history, not current authority.
 V2 removed a receipt-publication race; the subsequent state-machine replay
 showed that no-factor must be a nonterminal `checkpoint`, not terminal
-`result`. V3 is the first receipt binding both corrections before arithmetic
-started.
+`result`. V3 binds both corrections. V4 additionally binds the single-writer
+cross-candidate ordering and verified-factor PRP early-abort guard before
+arithmetic started.
 
 ## Reproduction
 
@@ -80,11 +99,11 @@ PASS M332228213 full P-1/PRP pipeline: P40-only, both negative predecessor gates
 Evidence hashes at capture:
 
 - full VM101 staging receipt:
-  `59e7f71a402cf5b38486c52a49ff21b772a6c51f554245e23c69d439b7a9ff82`;
+  `40b2bf48cdfa73b56b4f78aa3633a07e05d07f90f41bf57f89df998e2bf24115`;
 - pipeline fault-test receipt:
-  `8820ef749ef2687fad3e7b1b3f57e531bacfc198aad8a16d287367494686a58c`;
+  `7e5f6c3db20e676203bef1f146d67680fec3c21e07872731d3e6b65395bd5779`;
 - verifier:
-  `2c8eb2c592f6a9183595d2494c9c0b9c9af48ca46c21c1c09e20ae49c385ea3b`.
+  `474c8d971fa19f6e70b9fa07e3efab3ef2f847f0018fb1cb68e91a7ee935c629`.
 
 ## Scope boundary
 

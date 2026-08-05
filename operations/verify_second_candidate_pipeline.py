@@ -41,7 +41,7 @@ def main() -> None:
         root / "runs/post-pminus1-allocation-20260805T2208Z"
     )
     receipt = json.loads((evidence / "pipeline-fault-tests.json").read_text())
-    staging = json.loads((evidence / "vm101-full-pipeline-staging-v3.json").read_text())
+    staging = json.loads((evidence / "vm101-full-pipeline-staging-v4.json").read_text())
 
     assert receipt["schema"] == "eff.M332228213-full-pipeline-fault-tests.v1"
     assert receipt["result"] == "PASS"
@@ -127,7 +127,16 @@ def main() -> None:
     screening = tests["screening_state_machine"]
     assert screening["no_factor_checkpoint_admits_fresh_status_and_prp_lane"] is True
     assert screening["verified_factor_result_rejects_later_status"] is True
-    for timer_name in ("pipeline_sync_timer", "proof_backup_timer"):
+    ordered = tests["cross_candidate_ledger_ordering"]
+    assert ordered == {
+        "factor_result_then_second_start": True,
+        "no_factor_checkpoint_then_second_start": True,
+        "single_writer": "VM101",
+    }
+    assert tests["verified_factor_guard_preterminal_noop"] == "PASS"
+    for timer_name in (
+        "pipeline_sync_timer", "proof_backup_timer", "verified_factor_guard_timer"
+    ):
         timer = receipt["local_services"][timer_name]
         assert timer["LoadState"] == "loaded"
         assert timer["ActiveState"] == "active"
@@ -136,6 +145,11 @@ def main() -> None:
     prelaunch = receipt["local_services"]["proof_backup_prelaunch_service"]
     assert prelaunch["Result"] == "success"
     assert prelaunch["ExecMainStatus"] == 0
+    factor_prelaunch = receipt["local_services"][
+        "verified_factor_guard_preterminal_service"
+    ]
+    assert factor_prelaunch["Result"] == "success"
+    assert factor_prelaunch["ExecMainStatus"] == 0
 
     prp = (root / "scripts/run_p40_prp_M332228213.sh").read_text()
     require(
@@ -176,7 +190,29 @@ def main() -> None:
         'raise RuntimeError("remote and local candidate ledgers diverge")',
         'marker": "completion-published.txt"',
         'marker": "NOT_STARTED_VERIFIED_FACTOR.txt"',
+        'marker": "predecessor-ledger-published.txt"',
         'marker": "completed_utc.txt"',
+    )
+    p1_handoff = (root / "scripts/handoff_p40_to_M332228213.sh").read_text()
+    require(
+        p1_handoff,
+        'event = "checkpoint" if classification == "completed_no_factor_report" else "result"',
+        '--event "$predecessor_event" --exponent 332228177',
+        'predecessor-ledger-published.txt',
+        'VM101 is the sole writer for this terminal transition',
+    )
+    factor_guard = (
+        root / "tools/guard_vm102_prp_after_M332228177_pminus1.py"
+    ).read_text()
+    require(
+        factor_guard,
+        'if pow(2, exponent, factor) != 1:',
+        'return "KEEP_PRP_RUNNING_AFTER_NO_FACTOR"',
+        'return "STOP_PRP_AFTER_VERIFIED_FACTOR"',
+        'ssh(VM102, ["systemctl", "stop", PRP_SERVICE])',
+        'ssh(VM102, ["systemctl", "disable", PRP_SERVICE])',
+        '"local_ledger_write_performed": False',
+        '"predecessor-ledger-published.txt"',
     )
     proof_wrapper = (
         root / "scripts/backup_vm101_M332228213_prp_proof_residues.sh"

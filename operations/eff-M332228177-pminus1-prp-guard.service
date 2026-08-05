@@ -1,0 +1,9 @@
+[Unit]
+Description=Stop VM102 PRP only on independently verified M332228177 P-1 factor
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/john/eff
+ExecStart=/usr/bin/python3 /home/john/eff/tools/guard_vm102_prp_after_M332228177_pminus1.py --refresh-deliverables

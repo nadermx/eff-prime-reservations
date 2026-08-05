@@ -94,7 +94,6 @@ def main() -> int:
     hashes = staging["staged_hashes"]
     checks = {
         "run.sh": ROOT / "scripts/run_p40_pminus1_M332228213.sh",
-        "handoff.sh": ROOT / "scripts/handoff_p40_to_M332228213.sh",
         "worktodo.original.txt": ROOT / "configs/CUDAPm1_M332228213.worktodo",
         "reservation/M332228213.json": ROOT / "reservation/M332228213.json",
         "ledger/mersenne_candidates.jsonl": ROOT / "ledger/mersenne_candidates.jsonl",
@@ -102,6 +101,26 @@ def main() -> int:
     for suffix, local in checks.items():
         remote_hash = next(value for path, value in hashes.items() if path.endswith(suffix))
         require(remote_hash == digest(local), f"staged hash mismatch: {suffix}")
+
+    # The first immutable staging receipt predates the atomic/single-writer
+    # handoff upgrades. Preserve its historical hash, then bind the current
+    # deployed source through the authoritative v4 receipt.
+    initial_handoff = next(
+        value for path, value in hashes.items()
+        if path.endswith("M332228213-pminus1-queued/handoff.sh")
+    )
+    require(
+        initial_handoff == "3f87fb42c8dcd225474bad64b98c8bda0a93b84691437416532594cb0d27c15c",
+        "initial handoff history",
+    )
+    v4 = json.loads((allocation_root / "vm101-full-pipeline-staging-v4.json").read_text())
+    current_handoff = v4["staged_hashes"][
+        "/root/eff-prime/runs/M332228213-pminus1-queued/handoff.sh"
+    ]
+    require(
+        current_handoff == digest(ROOT / "scripts/handoff_p40_to_M332228213.sh"),
+        "current v4 handoff binding",
+    )
 
     for script in (
         "scripts/run_p40_pminus1_M332228213.sh",

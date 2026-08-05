@@ -18,9 +18,23 @@ pgrep -f '[C]UDAPm1-system-gmp' >/dev/null && fail "CUDAPm1 is still active"
 [ "$(nvidia-smi --query-gpu=uuid --format=csv,noheader | head -n 1)" = \
   "GPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2" ] || fail "unexpected GPU"
 
-mkdir predecessor || fail "predecessor evidence directory already exists"
-cp "$prior/completion-receipt.json" predecessor/
-[ -f "$prior/factor-certificate.json" ] && cp "$prior/factor-certificate.json" predecessor/
+mkdir -p predecessor || fail "cannot create predecessor evidence directory"
+for name in completion-receipt.json; do
+    if [ -f "predecessor/$name" ]; then
+        cmp -s "$prior/$name" "predecessor/$name" || fail "existing predecessor $name differs"
+    else
+        cp "$prior/$name" predecessor/ || fail "cannot retain predecessor $name"
+    fi
+done
+if [ -f "$prior/factor-certificate.json" ]; then
+    if [ -f predecessor/factor-certificate.json ]; then
+        cmp -s "$prior/factor-certificate.json" predecessor/factor-certificate.json || \
+            fail "existing predecessor factor certificate differs"
+    else
+        cp "$prior/factor-certificate.json" predecessor/ || \
+            fail "cannot retain predecessor factor certificate"
+    fi
+fi
 python3 - <<'PY' || fail "predecessor receipt"
 import json
 r = json.load(open("predecessor/completion-receipt.json", encoding="utf-8"))
@@ -33,6 +47,38 @@ else:
     q = int(c["factor"])
     assert c["exponent"] == 332228177 and pow(2, 332228177, q) == 1
 PY
+
+# VM101 is the sole writer for this terminal transition. Record the current
+# candidate classification before any second-candidate status/work records so
+# the local evidence synchronizer cannot race a valid but divergent child.
+receipt_sha="$(sha256sum predecessor/completion-receipt.json | awk '{print $1}')"
+read -r predecessor_event predecessor_classification < <(python3 - <<'PY'
+import json
+r = json.load(open("predecessor/completion-receipt.json", encoding="utf-8"))
+classification = r["classification"]
+event = "checkpoint" if classification == "completed_no_factor_report" else "result"
+print(event, classification)
+PY
+)
+predecessor_matches="$(python3 - "$receipt_sha" "$predecessor_event" <<'PY'
+import json
+import sys
+records = [json.loads(line) for line in open("ledger/mersenne_candidates.jsonl", encoding="utf-8")]
+history = [r for r in records if r.get("exponent") == 332228177]
+print("yes" if history and history[-1].get("event") == sys.argv[2] and
+      history[-1].get("evidence_sha256") == sys.argv[1] else "no")
+PY
+)"
+if [ "$predecessor_matches" != yes ]; then
+    python3 candidate_ledger.py append ledger/mersenne_candidates.jsonl \
+        --event "$predecessor_event" --exponent 332228177 \
+        --evidence-sha256 "$receipt_sha" \
+        --note "VM101 fixed-bound P-1 classification: $predecessor_classification; B1=1495000, B2=32142500." \
+        > ledger-predecessor-head.txt || fail "cannot append predecessor classification"
+fi
+python3 candidate_ledger.py verify ledger/mersenne_candidates.jsonl \
+    > ledger-predecessor-verify.txt || fail "predecessor classification ledger invalid"
+date -u +%Y-%m-%dT%H:%M:%SZ > predecessor-ledger-published.txt
 
 python3 candidate_preflight.py 332228213 --evidence-dir preflight \
     > preflight.stdout || fail "fresh official preflight fetch"
@@ -66,7 +112,8 @@ python3 candidate_ledger.py verify ledger/mersenne_candidates.jsonl \
 ./run.sh --preflight-only > handoff-preflight.stdout || fail "arithmetic launch preflight"
 date -u +%Y-%m-%dT%H:%M:%SZ > handoff_utc.txt
 sha256sum preflight/* predecessor/* ledger/mersenne_candidates.jsonl \
-    reservation/* run.sh resume.sh capture-completion.sh > handoff-provenance.sha256
+    predecessor-ledger-published.txt reservation/* run.sh resume.sh \
+    capture-completion.sh > handoff-provenance.sha256
 systemctl start eff-pm1-m332228213.service || fail "systemd start"
 sleep 5
 systemctl is-active --quiet eff-pm1-m332228213.service || \

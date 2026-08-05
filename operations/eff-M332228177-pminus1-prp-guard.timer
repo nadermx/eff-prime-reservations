@@ -1,0 +1,11 @@
+[Unit]
+Description=Poll for terminal M332228177 P-1 classification every two minutes
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=2min
+Persistent=true
+Unit=eff-M332228177-pminus1-prp-guard.service
+
+[Install]
+WantedBy=timers.target

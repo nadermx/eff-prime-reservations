@@ -26,6 +26,18 @@ PRP_REMOTE = "/root/eff-prime/runs/M332228213-prp-queued"
 
 STAGES = (
     {
+        "name": "current-p1-classification",
+        "remote": P1_REMOTE,
+        "local": "runs/M332228177-pminus1-terminal-guard",
+        "marker": "predecessor-ledger-published.txt",
+        "receipt": "sync-classification-ledger.json",
+        "dirs": ("predecessor", "ledger"),
+        "files": (
+            "predecessor-ledger-published.txt", "ledger-predecessor-head.txt",
+            "ledger-predecessor-verify.txt",
+        ),
+    },
+    {
         "name": "p1-start",
         "remote": P1_REMOTE,
         "local": "runs/M332228213-pminus1-queued",

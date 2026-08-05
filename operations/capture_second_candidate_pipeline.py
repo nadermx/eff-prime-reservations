@@ -46,6 +46,8 @@ UNITS = (
     "configs/eff-vm101-M332228213-pipeline-sync.timer",
     "configs/eff-vm101-M332228213-proof-residue-backup.service",
     "configs/eff-vm101-M332228213-proof-residue-backup.timer",
+    "configs/eff-M332228177-pminus1-prp-guard.service",
+    "configs/eff-M332228177-pminus1-prp-guard.timer",
 )
 
 
@@ -205,6 +207,47 @@ def exercise_screening_transitions() -> dict[str, object]:
     }
 
 
+def exercise_cross_candidate_ordering() -> dict[str, object]:
+    """Verify one canonical chain for both predecessor outcomes."""
+    source = ROOT / "ledger/mersenne_candidates.jsonl"
+    tool = ROOT / "tools/candidate_ledger.py"
+    authority = (
+        "https://github.com/nadermx/eff-prime-reservations/commit/"
+        "83b3472f12e7d571a6aa43bc478154e42b604289"
+    )
+    for predecessor_event in ("checkpoint", "result"):
+        with tempfile.TemporaryDirectory(
+            prefix=f"ordered-{predecessor_event}-", dir=ROOT / "runs"
+        ) as raw:
+            ledger = Path(raw) / "ledger.jsonl"
+            shutil.copy2(source, ledger)
+
+            def append(event: str, exponent: int, evidence: str, timestamp: str,
+                       authority_reference: str | None = None) -> None:
+                command = [
+                    "python3", str(tool), "append", str(ledger), "--event", event,
+                    "--exponent", str(exponent), "--evidence-sha256", evidence,
+                    "--note", "cross-candidate ordering fixture",
+                    "--timestamp", timestamp,
+                ]
+                if authority_reference:
+                    command.extend(["--authority-reference", authority_reference])
+                subprocess.run(command, check=True, stdout=subprocess.DEVNULL)
+
+            append(predecessor_event, 332228177, "8" * 64, "2026-08-05T23:05:00Z")
+            append("status_snapshot", 332228213, "9" * 64, "2026-08-05T23:05:01Z")
+            append(
+                "work_started", 332228213, "9" * 64,
+                "2026-08-05T23:05:02Z", authority,
+            )
+            run(["python3", str(tool), "verify", str(ledger)])
+    return {
+        "no_factor_checkpoint_then_second_start": True,
+        "factor_result_then_second_start": True,
+        "single_writer": "VM101",
+    }
+
+
 def user_unit(name: str) -> dict[str, object]:
     result = run([
         "systemctl", "--user", "show", name, "--no-pager",
@@ -234,18 +277,30 @@ def main() -> int:
     expected_wait = "waiting: VM101 M332228213 PRP proof directory is not active yet"
     if proof_wait.stdout.strip() != expected_wait:
         raise RuntimeError(f"unexpected proof prelaunch state: {proof_wait.stdout!r}")
+    factor_guard = run([
+        "python3", str(ROOT / "tools/guard_vm102_prp_after_M332228177_pminus1.py")
+    ])
+    expected_guard = "waiting: M332228177 P-1 terminal receipt is not published"
+    if factor_guard.stdout.strip() != expected_guard:
+        raise RuntimeError(f"unexpected terminal factor-guard state: {factor_guard.stdout!r}")
 
     ledger_tests = exercise_ledger_reconciliation()
     sync_timer = user_unit("eff-vm101-M332228213-pipeline-sync.timer")
     proof_timer = user_unit("eff-vm101-M332228213-proof-residue-backup.timer")
     proof_service = user_unit("eff-vm101-M332228213-proof-residue-backup.service")
-    for timer in (sync_timer, proof_timer):
+    factor_guard_timer = user_unit("eff-M332228177-pminus1-prp-guard.timer")
+    factor_guard_service = user_unit("eff-M332228177-pminus1-prp-guard.service")
+    for timer in (sync_timer, proof_timer, factor_guard_timer):
         if timer.get("ActiveState") != "active" or timer.get("SubState") != "waiting":
             raise RuntimeError(f"required local timer is not waiting: {timer}")
         if timer.get("UnitFileState") != "enabled":
             raise RuntimeError(f"required local timer is not enabled: {timer}")
     if proof_service.get("Result") != "success" or proof_service.get("ExecMainStatus") != 0:
         raise RuntimeError("proof prelaunch service did not exit successfully")
+    if factor_guard_service.get("Result") != "success" or factor_guard_service.get(
+        "ExecMainStatus"
+    ) != 0:
+        raise RuntimeError("verified-factor guard preterminal service did not exit successfully")
 
     remote = run([
         "ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=10", REMOTE,
@@ -274,6 +329,7 @@ def main() -> int:
             *SHELL_SCRIPTS,
             *UNITS,
             "tools/sync_vm101_M332228213_pipeline.py",
+            "tools/guard_vm102_prp_after_M332228177_pminus1.py",
             "tools/candidate_ledger.py",
             "reservation/M332228213.json",
             "reservation/M332228213.json.sig",
@@ -287,6 +343,8 @@ def main() -> int:
             "eff-vm101-M332228213-pipeline-sync.timer",
             "eff-vm101-M332228213-proof-residue-backup.service",
             "eff-vm101-M332228213-proof-residue-backup.timer",
+            "eff-M332228177-pminus1-prp-guard.service",
+            "eff-M332228177-pminus1-prp-guard.timer",
         )
     }
     for name, value in installed.items():
@@ -311,11 +369,15 @@ def main() -> int:
             "proof_backup_prelaunch_noop": "PASS",
             "append_only_sync": ledger_tests,
             "screening_state_machine": exercise_screening_transitions(),
+            "cross_candidate_ledger_ordering": exercise_cross_candidate_ordering(),
+            "verified_factor_guard_preterminal_noop": "PASS",
         },
         "local_services": {
             "pipeline_sync_timer": sync_timer,
             "proof_backup_timer": proof_timer,
             "proof_backup_prelaunch_service": proof_service,
+            "verified_factor_guard_timer": factor_guard_timer,
+            "verified_factor_guard_preterminal_service": factor_guard_service,
         },
         "installed_unit_sha256": installed,
         "source_sha256": hashes,
