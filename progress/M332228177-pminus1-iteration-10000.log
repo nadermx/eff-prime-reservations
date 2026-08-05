@@ -1,0 +1,11 @@
+CUDAPm1 v0.22
+No TeslaP40_fft.txt file found. Using default fft lengths.
+For optimal fft selection, please run
+./CUDAPm1 -cufftbench 1 8192 r
+for some small r, 0 < r < 6 e.g.
+CUDA reports 24288M of 24438M GPU memory free.
+Using threads: norm1 512, mult 32, norm2 1024.
+Using up to 24160M GPU memory.
+Starting stage 1 P-1, M332228177, B1 = 1495000, B2 = 32142500, fft length = 19208K
+Doing 2157487 iterations
+Iteration 10000 M332228177, 0xfd25d4bdbd033427, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:34 real, 21.4559 ms/iter, ETA 12:47:56)

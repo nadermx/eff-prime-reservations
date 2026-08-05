@@ -1,0 +1,13 @@
+{
+  "b1": 1495000,
+  "checkpoint": "/root/eff-prime/runs/M332228177-pminus1-20260805T0412Z/c332228177s1",
+  "checkpoint_bytes": 41528624,
+  "checkpoint_sha256": "7a1299a5f5a4ca408af9c9d05ea640a5c5aeb1f10b026d53985b37e174e17480",
+  "elapsed_seconds": 214,
+  "exponent": 332228177,
+  "fft_length": 19668992,
+  "gcd_status": "not_run",
+  "iteration": 10001,
+  "schema": "eff.cudapm1-checkpoint-gcd.v1",
+  "stage": 1
+}
