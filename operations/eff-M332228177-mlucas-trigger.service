@@ -1,0 +1,8 @@
+[Unit]
+Description=Fetch proof-verified M332228177 hit and start distinct Mlucas
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/john/eff
+ExecStart=/usr/bin/python3 /home/john/eff/tools/sync_and_start_M332228177_mlucas.py
+

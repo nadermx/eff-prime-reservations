@@ -1,0 +1,10 @@
+[Unit]
+Description=Classify M332228177 PRP and admit proof verification/LL fail-closed
+After=eff-prp-m332228177.service
+
+[Service]
+Type=oneshot
+ExecStart=/root/eff-prime/scripts/handoff_M332228177_prp_to_ll.sh
+Restart=on-failure
+RestartSec=60
+

@@ -1,0 +1,264 @@
+{
+  "candidate": {
+    "digits": 100010647,
+    "exponent": 332228177
+  },
+  "captured_utc": "2026-08-05T23:52:34Z",
+  "gpu_policy": {
+    "h200_used": false,
+    "vm101_selected": "Tesla P40",
+    "vm102_selected": "Tesla P40"
+  },
+  "local_independent_mlucas_transition": {
+    "completion_absent": true,
+    "directory": "/home/john/eff/runs/M332228177-mlucas-queued",
+    "negative_predecessor_gate": {
+      "exit_status": 64,
+      "stderr": "refusing Mlucas confirmation launch: predecessor manifest absent",
+      "stdout": ""
+    },
+    "predecessor_absent": true,
+    "staged_sha256": {
+      "Mlucas-main-4a21413-avx2-safe": "b9d89a8e1a2c2c558c86fad6ead3fd311fd93e9eb67bda1bdf8f9f98c81f3d56",
+      "Mlucas-main-4a21413-source.tar.gz": "7d077166c5d34869e7a08b78cb838317a2ba1a51277fb17ce79c964d987efacb",
+      "mlucas.cfg": "e22efd897f83185b72694cfafcf4b259e1e3d1584b454b988ed12fdd4ce6e398",
+      "run.sh": "90bf5f04be626d076e1f9a355a4d23df9e7295787295252cac4faac8b4a82f6f",
+      "verify_mlucas_result.py": "d95f66a12fe0f39d0609860a7fbc2a996d2fc428dd415efe57d3adb1d4909c0e",
+      "worktodo.original.txt": "a9620734764a12732a404fb1aa873b0cc6edd11ab911a16915de8d0c279e12a7"
+    },
+    "start_absent": true,
+    "trigger_output": "waiting: proof-verified M332228177 probable-prime trigger is absent",
+    "units": {
+      "eff-M332228177-mlucas-trigger.service": {
+        "ActiveState": "inactive",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "dead",
+        "UnitFileState": "static"
+      },
+      "eff-M332228177-mlucas-trigger.timer": {
+        "ActiveState": "active",
+        "LoadState": "loaded",
+        "Result": "success",
+        "SubState": "waiting",
+        "UnitFileState": "enabled"
+      },
+      "eff-mlucas-m332228177.service": {
+        "ActiveState": "inactive",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "dead",
+        "UnitFileState": "static"
+      }
+    }
+  },
+  "off_vm_prp_proof_backup": {
+    "ledger_file_sha256": "84d40ab2883e41904094a1cfd216be5efe40e33912d9688790125810e751a9aa",
+    "manifest_file_sha256": "08f32265a18b5aa1074d0c2af13647eea3f8a49b6a9cb42c5f42da12511f0a0d",
+    "receipt": {
+      "backup_script_sha256": "e4bbaf6d34500ed3b006ba6534fddb46c32834f3b98bab2dfde4735ae8df3dcf",
+      "captured_utc": "2026-08-05T23:48:40Z",
+      "copied_this_run": 0,
+      "expected_residue_bytes": 41528528,
+      "expected_total_residues": 2048,
+      "exponent": 332228177,
+      "full_scrub_interval_seconds": 21600,
+      "full_scrub_this_run": false,
+      "installed_service_unit_sha256": "8caf6ba4d1d23e9a8a9801993c7c02c37d9240f855faca6ef0f580e057631ed6",
+      "installed_timer_unit_sha256": "861411101e964d79b10e845507841c3a6b522ed888f52f36a61e890512f33f28",
+      "last_full_scrub_utc": "2026-08-05T19:39:59Z",
+      "ledger_sha256": "84d40ab2883e41904094a1cfd216be5efe40e33912d9688790125810e751a9aa",
+      "manifest_sha256": "08f32265a18b5aa1074d0c2af13647eea3f8a49b6a9cb42c5f42da12511f0a0d",
+      "off_vm_backed_up_bytes": 1328912896,
+      "off_vm_backed_up_count": 32,
+      "proof_power": 11,
+      "remote_eligible_count": 32,
+      "remote_service": {
+        "active_state": "active",
+        "restarts": 0,
+        "sub_state": "running"
+      },
+      "result": "PASS",
+      "schema": "eff.vm102-prp-proof-residue-backup.v1",
+      "scope": "Immutable PRP proof residues only; not a PRP result or primality proof.",
+      "seconds_since_full_scrub": 14920
+    },
+    "receipt_sha256": "2f503dbefe188cd83faa7b0d5d008ec213b27c27465828d004e8ad4ffa7c0678"
+  },
+  "result": "STAGED_AND_FAULT_TESTED_NO_CANDIDATE_RESULT",
+  "schema": "eff.M332228177-prp-to-deterministic-proof-pipeline.v1",
+  "scope": "This receipt proves fail-closed deployment and fault tests only. The live PRP is unfinished; no probable-prime result, Lucas-Lehmer prime residue, independent confirmation, publication, or EFF award claim exists.",
+  "source_sha256": {
+    "configs/Mlucas_M332228177.worktodo": "a9620734764a12732a404fb1aa873b0cc6edd11ab911a16915de8d0c279e12a7",
+    "configs/eff-M332228177-mlucas-trigger.service": "3552db371f3f62adf9f48b24f7d105e065d20785977bcacf9f1da227c1901e37",
+    "configs/eff-M332228177-mlucas-trigger.timer": "cbf428550835f7cde2bafe2bf61e13ee960972668e238acaa7db0b603bd36a39",
+    "configs/eff-handoff-m332228177-prp-to-ll.path": "19486b908fe6bc6b25b3fa9e497210899a9fc02bc6379ff2970b013ad0ac1c62",
+    "configs/eff-handoff-m332228177-prp-to-ll.service": "4be8cde351eb61040566de388368237b299e7ebf59409b6c121adfe5d295b1fe",
+    "configs/eff-ll-m332228177.service": "2ca0c33d11427189f2525444cc00e57656ebf9c0e4bae8a7d88f407d93d3d6d7",
+    "configs/eff-mlucas-m332228177.service": "d987c06df818300f1717b44d92bba51364a5faf9a951724194c17a2a0f88e6d5",
+    "scripts/handoff_M332228177_prp_to_ll.sh": "807c0f4c6cedfb5c88968f9dd2b22531304ee99c9b7c0fc3db724ce6af589db9",
+    "scripts/run_mlucas_ll_M332228177.sh": "90bf5f04be626d076e1f9a355a4d23df9e7295787295252cac4faac8b4a82f6f",
+    "scripts/run_p40_ll_M332228177.sh": "94f2a50d444987b16c0da3352e57780f46ecb5a1982500dba2242739b8bcea41",
+    "tools/capture_prp_to_ll_pipeline.py": "432d059fdba588384c786c06a6e268a3abcc331dc9fe7e9952919b15a1de36d7",
+    "tools/classify_prpll_transition.py": "5af7a4363c0d70bfaa96a484e3ce0bb39f055f907229bc9e941ebea7e7f86166",
+    "tools/sync_and_start_M332228177_mlucas.py": "5acf159e2f004684176ddbbde2f268b2a08b243937f18cc2d5ce9ace80c616c8",
+    "tools/verify_mlucas_result.py": "d95f66a12fe0f39d0609860a7fbc2a996d2fc428dd415efe57d3adb1d4909c0e",
+    "tools/verify_prpll_result.py": "7cb64288e184472df792af28db562415785d42fd43265338965a3349fb4484ec",
+    "verify_mlucas_result_semantics.py": "dee628f3688fdcc7662a4a1a31003566f7b564e8e020871479f462174e157689",
+    "verify_prp_to_ll_transition.py": "423ac8291a5df79128949093fcf38f589612225dd90a272fb0afc7191ec52cbd",
+    "verify_prpll_result_semantics.py": "5a9b8893524dafda78aefe17456798cd8e66aeb0885b4221dde61fac7549e1aa"
+  },
+  "tests": {
+    "mlucas_result_semantics": {
+      "result": "PASS",
+      "stdout": "PASS Mlucas prime status requires an exact zero Lucas--Lehmer residue\nPASS nonzero errors, wrong program, and duplicate terminal records rejected\nSCOPE: result-record validation only; no candidate result or primality claim"
+    },
+    "multiple_remote_scp_sources": {
+      "copied_sha256": {
+        "run.sh": "94f2a50d444987b16c0da3352e57780f46ecb5a1982500dba2242739b8bcea41",
+        "verify_prpll_result.py": "7cb64288e184472df792af28db562415785d42fd43265338965a3349fb4484ec"
+      },
+      "result": "PASS"
+    },
+    "prp_proof_binding": {
+      "result": "PASS",
+      "stdout": "PASS PRP-3 result is bound to exact proof header, size, MD5, and SHA-256\nPASS truncated, wrong-header, and content-tampered proof files rejected\nSCOPE: transition readiness only; no candidate result or primality claim"
+    },
+    "prpll_result_semantics": {
+      "result": "PASS",
+      "stdout": "PASS exact PRP-3 proof metadata and zero-error semantics\nPASS LL prime status requires zero residue; tampered record rejected\nSCOPE: result-record validation only; no candidate result or primality claim"
+    },
+    "shell_syntax": "PASS"
+  },
+  "vm101_live_pminus1_and_candidate2": {
+    "candidate2_pminus1_start_absent": true,
+    "candidate2_prp_start_absent": true,
+    "candidate2_result_verifier_sha256": {
+      "/root/eff-prime/runs/M332228213-prp-queued/verify_prpll_result.py": "7cb64288e184472df792af28db562415785d42fd43265338965a3349fb4484ec"
+    },
+    "gpu": "Tesla P40, GPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2, 100 %, 17915 MiB, 24576 MiB, 34",
+    "host": "38.86.78.5",
+    "pminus1_completion_absent": true,
+    "pminus1_process": "69102   69077 Wed Aug  5 17:18:40 2026    06:33:42 /usr/bin/time -v env CUDAPM1_ONE_SHOT=1 LD_LIBRARY_PATH=/root/eff-prime/cudapm1/runtime12/nvidia/cufft/lib:/root/eff-prime/cudapm1/runtime12/nvidia/cuda_runtime/lib ./CUDAPm1-system-gmp -d 0 -i CUDAPm1.ini -f 19208K -nrp2 120 worktodo.txt\n  69103   69102 Wed Aug  5 17:18:40 2026    06:33:42 ./CUDAPm1-system-gmp -d 0 -i CUDAPm1.ini -f 19208K -nrp2 120 worktodo.txt",
+    "progress_tail": "Transforms: 19426 M332228177, 0x2a0f96e7a2127279, n = 19208K, CUDAPm1 v0.22 err = 0.13281 (3:40 real, 11.2789 ms/tran, ETA 5:14:42)\nTransforms: 20664 M332228177, 0x6d3c60cf54c393f8, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:53 real, 11.2835 ms/tran, ETA 5:10:49)\nTransforms: 20780 M332228177, 0x946ef275a2db51d5, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:54 real, 11.2799 ms/tran, ETA 5:06:55)\nTransforms: 20968 M332228177, 0x21a4df8b3ab5a3db, n = 19208K, CUDAPm1 v0.22 err = 0.13086 (3:57 real, 11.2811 ms/tran, ETA 5:02:59)\nTransforms: 21842 M332228177, 0x2a2b053c11e4929a, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (4:06 real, 11.2806 ms/tran, ETA 4:58:54)\nTransforms: 21704 M332228177, 0x6b5cacaf939d2e0f, n = 19208K, CUDAPm1 v0.22 err = 0.12891 (4:05 real, 11.2785 ms/tran, ETA 4:54:49)\n\nProcessing 536 - 642 of 960 relative primes.\nInitializing pass... done. transforms: 4841, err = 0.11719, (53.73 real, 11.0983 ms/tran,  ETA 4:53:56)\nTransforms: 21480 M332228177, 0xcdc894e72473fdfb, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (4:02 real, 11.2745 ms/tran, ETA 4:49:54)\nTransforms: 21226 M332228177, 0x2362ee0eafb1442f, n = 19208K, CUDAPm1 v0.22 err = 0.12695 (3:59 real, 11.2762 ms/tran, ETA 4:45:55)\nTransforms: 20706 M332228177, 0x4e42bcc6324bc75f, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:54 real, 11.2774 ms/tran, ETA 4:42:02)\nTransforms: 20720 M332228177, 0xc71a9daa96876213, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:53 real, 11.2745 ms/tran, ETA 4:38:08)\nTransforms: 20522 M332228177, 0x42d8107cae6d88bf, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:52 real, 11.2763 ms/tran, ETA 4:34:17)",
+    "units": {
+      "eff-pm1-m332228177-completion.path": {
+        "ActiveState": "active",
+        "LoadState": "loaded",
+        "Result": "success",
+        "SubState": "waiting",
+        "UnitFileState": "enabled"
+      },
+      "eff-pm1-m332228177-resume.service": {
+        "ActiveState": "active",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "running",
+        "UnitFileState": "enabled"
+      },
+      "eff-pm1-m332228177.service": {
+        "ActiveState": "failed",
+        "ExecMainStatus": 255,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "exit-code",
+        "SubState": "failed",
+        "UnitFileState": "transient"
+      },
+      "eff-pm1-m332228213.service": {
+        "ActiveState": "inactive",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "dead",
+        "UnitFileState": "disabled"
+      },
+      "eff-prp-m332228213.service": {
+        "ActiveState": "inactive",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "dead",
+        "UnitFileState": "disabled"
+      }
+    }
+  },
+  "vm102_live_prp_and_ll_transition": {
+    "completion_absent": true,
+    "composite_marker_absent": true,
+    "deployed_sha256": {
+      "/etc/systemd/system/eff-handoff-m332228177-prp-to-ll.path": "19486b908fe6bc6b25b3fa9e497210899a9fc02bc6379ff2970b013ad0ac1c62",
+      "/etc/systemd/system/eff-handoff-m332228177-prp-to-ll.service": "4be8cde351eb61040566de388368237b299e7ebf59409b6c121adfe5d295b1fe",
+      "/etc/systemd/system/eff-ll-m332228177.service": "2ca0c33d11427189f2525444cc00e57656ebf9c0e4bae8a7d88f407d93d3d6d7",
+      "/root/eff-prime/runs/M332228177-ll-queued/prpll": "04073474c66c374a7ef91c18b6b3c30a5bd726969b67707a533888812f44c27d",
+      "/root/eff-prime/runs/M332228177-ll-queued/run.sh": "94f2a50d444987b16c0da3352e57780f46ecb5a1982500dba2242739b8bcea41",
+      "/root/eff-prime/runs/M332228177-ll-queued/verify_prpll_result.py": "7cb64288e184472df792af28db562415785d42fd43265338965a3349fb4484ec",
+      "/root/eff-prime/runs/M332228177-prp-20260805T0450Z/classify_prpll_transition.py": "5af7a4363c0d70bfaa96a484e3ce0bb39f055f907229bc9e941ebea7e7f86166",
+      "/root/eff-prime/runs/M332228177-prp-20260805T0450Z/prpll": "04073474c66c374a7ef91c18b6b3c30a5bd726969b67707a533888812f44c27d",
+      "/root/eff-prime/runs/M332228177-prp-20260805T0450Z/verify_prpll_result.py": "7cb64288e184472df792af28db562415785d42fd43265338965a3349fb4484ec",
+      "/root/eff-prime/scripts/handoff_M332228177_prp_to_ll.sh": "807c0f4c6cedfb5c88968f9dd2b22531304ee99c9b7c0fc3db724ce6af589db9"
+    },
+    "gpu": "Tesla P40, GPU-a5c50372-9b4f-1496-eebf-f7220cd342fd, 100 %, 801 MiB, 24576 MiB, 37",
+    "host": "38.86.78.6",
+    "hotfix_marker": "7cb64288e184472df792af28db562415785d42fd43265338965a3349fb4484ec  /root/eff-prime/runs/M332228177-prp-20260805T0450Z/verify_prpll_result.py\n2026-08-05T23:36:04Z",
+    "ll_completion_absent": true,
+    "ll_predecessor_negative_gate": {
+      "exit_status": 64,
+      "stderr": "refusing Lucas-Lehmer launch: predecessor manifest absent",
+      "stdout": ""
+    },
+    "preterminal_file_sizes": "/root/eff-prime/runs/M332228177-prp-20260805T0450Z/validated-result.json 0",
+    "preterminal_handoff_negative_gate": {
+      "exit_status": 75,
+      "stderr": "PRP-to-LL handoff refused: PRP completion marker absent",
+      "stdout": ""
+    },
+    "probable_prime_trigger_absent": true,
+    "progress_tail": "20260805 23:22:57 332228177      5200000 4a1fc400800218b6 12181\n20260805 23:27:01 332228177      5220000 48fea516ff4efac6 12168\n20260805 23:31:04 332228177      5240000 e692cee3e4665d33 12168\n20260805 23:35:07 332228177      5260000 346076ec9d2239f0 12168\n20260805 23:39:11 332228177      5280000 86196cb2a50fd06d 12170\n20260805 23:43:14 332228177      5300000 6316a95ac8c4d639 12171\n20260805 23:47:18 332228177      5320000 41edff2207e92507 12170\n20260805 23:51:21 332228177      5340000 6e3c5c08e9fc1ec2 12171",
+    "result_absent": true,
+    "units": {
+      "eff-handoff-m332228177-prp-to-ll.path": {
+        "ActiveState": "active",
+        "LoadState": "loaded",
+        "Result": "success",
+        "SubState": "waiting",
+        "UnitFileState": "enabled"
+      },
+      "eff-handoff-m332228177-prp-to-ll.service": {
+        "ActiveState": "inactive",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "dead",
+        "UnitFileState": "static"
+      },
+      "eff-ll-m332228177.service": {
+        "ActiveState": "inactive",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "dead",
+        "UnitFileState": "static"
+      },
+      "eff-prp-m332228177.service": {
+        "ActiveState": "active",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "running",
+        "UnitFileState": "enabled"
+      }
+    }
+  }
+}

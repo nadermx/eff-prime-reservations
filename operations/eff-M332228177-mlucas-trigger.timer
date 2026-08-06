@@ -1,0 +1,13 @@
+[Unit]
+Description=Poll VM102 for proof-verified M332228177 probable-prime trigger
+
+[Timer]
+OnBootSec=120
+OnUnitActiveSec=300
+AccuracySec=15
+Persistent=true
+Unit=eff-M332228177-mlucas-trigger.service
+
+[Install]
+WantedBy=timers.target
+

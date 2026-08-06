@@ -36,6 +36,12 @@ Current public progress:
   also copied off-VM and SHA-256 verified.
 - a fail-closed completion watcher is waiting for the P-1 exit record; it
   verifies any reported factor and cannot launch follow-on computation.
+- the current `PRP-3` terminal format was source-audited and its hardened
+  exact-result parser was deployed by SHA-256 without interrupting PRP;
+- a proof-bound probable-prime transition, deterministic P40
+  Lucas--Lehmer branch, and distinct CPU/Mlucas branch are staged behind real
+  negative predecessor gates. At the retained receipt PRP was at iteration
+  5,340,000 and neither deterministic branch had started.
 
 These are active search records, not a probable-prime result, deterministic
 Lucas-Lehmer proof, discovery announcement, or award claim.
