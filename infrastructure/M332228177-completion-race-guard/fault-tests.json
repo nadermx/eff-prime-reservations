@@ -1,0 +1,14 @@
+{
+  "captured_utc": "2026-08-06T03:12:43Z",
+  "result": "PASS",
+  "results": {
+    "accepts_settled_initial_metadata": true,
+    "accepts_settled_resume_metadata": true,
+    "rejects_missing_fresh_resume_telemetry": true,
+    "rejects_missing_initial_metadata": true,
+    "rejects_missing_initial_telemetry": true,
+    "rejects_stale_resume_metadata": true
+  },
+  "schema": "eff.M332228177-completion-race-guard-fault-tests.v1",
+  "scope": "Metadata-order fault tests only; no arithmetic result."
+}

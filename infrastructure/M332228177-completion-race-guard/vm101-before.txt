@@ -1,0 +1,17 @@
+2026-08-06T03:12:48Z
+MainPID=69077
+NRestarts=0
+ActiveState=active
+SubState=running
+Result=success
+ActiveState=inactive
+SubState=dead
+ActiveState=active
+SubState=waiting
+UnitFileState=enabled
+exit_status=absent
+completion_receipt=absent
+69102 /usr/bin/time -v env CUDAPM1_ONE_SHOT=1 LD_LIBRARY_PATH=/root/eff-prime/cudapm1/runtime12/nvidia/cufft/lib:/root/eff-prime/cudapm1/runtime12/nvidia/cuda_runtime/lib ./CUDAPm1-system-gmp -d 0 -i CUDAPm1.ini -f 19208K -nrp2 120 worktodo.txt
+69103 ./CUDAPm1-system-gmp -d 0 -i CUDAPm1.ini -f 19208K -nrp2 120 worktodo.txt
+GPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2, Tesla P40, 100 %, 17915 MiB, 35
+3ca39854d4e871273950e9516d2f1e21eaa0776576183f1eeb9447962da29fb2  /root/eff-prime/runs/M332228177-pminus1-20260805T0412Z/capture-completion.sh

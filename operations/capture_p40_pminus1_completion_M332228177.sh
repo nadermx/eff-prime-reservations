@@ -18,9 +18,31 @@ if [ -f completion-receipt.json ]; then
     echo "completion receipt already exists; refusing duplicate capture"
     exit 0
 fi
-if pgrep -f '[C]UDAPm1-system-gmp' >/dev/null; then
-    fail "CUDAPm1 is still running"
-fi
+
+# The run wrappers deliberately record the arithmetic exit status before
+# appending their final timestamp and GPU telemetry.  A PathChanged watcher on
+# exit_status.txt can therefore start this oneshot during that sub-second
+# interval.  Wait for metadata that is newer than the terminal marker instead
+# of turning the harmless ordering window into a stranded terminal result.
+completion_metadata_ready() {
+    if [ -f resume-checkpoint-metadata.json ]; then
+        [ -f resume_ended_utc.txt ] && [ resume_ended_utc.txt -nt exit_status.txt ] && \
+            [ -f resume_after_gpu.csv ] && [ resume_after_gpu.csv -nt exit_status.txt ]
+    else
+        [ -f ended_utc.txt ] && [ ended_utc.txt -nt exit_status.txt ] && \
+            [ -f after_gpu.csv ] && [ after_gpu.csv -nt exit_status.txt ]
+    fi
+}
+
+completion_ready=no
+for _ in $(seq 0 30); do
+    if ! pgrep -f '[C]UDAPm1-system-gmp' >/dev/null && completion_metadata_ready; then
+        completion_ready=yes
+        break
+    fi
+    sleep 1
+done
+[ "$completion_ready" = yes ] || fail "terminal process/metadata did not settle"
 [ "$(sha256sum CUDAPm1-system-gmp | awk '{print $1}')" = \
     "$expected_binary_sha256" ] || fail "binary hash mismatch"
 [ "$(sha256sum worktodo.original.txt | awk '{print $1}')" = \

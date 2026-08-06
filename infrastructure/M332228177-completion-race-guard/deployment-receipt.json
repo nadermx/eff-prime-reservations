@@ -1,0 +1,23 @@
+{
+  "arithmetic_pid_before_after": "69077",
+  "arithmetic_restarted": false,
+  "arithmetic_signalled": false,
+  "captured_utc": "2026-08-06T03:12:56Z",
+  "completion_path_active_waiting": true,
+  "evidence_sha256": {
+    "negative-gate.txt": "207b40f8fb4956e4326894bcf7d373bad3e425dde33325b3be1c3d7daaf68103",
+    "vm101-after.txt": "942bf47343aa12fd87f83efdc50c49d194a5ea31fc19268aa568de4311ec557b",
+    "vm101-before.txt": "b45dcbd5185eb966158157596ce216f2f0256d1c33515d7faeebf5244f5b2c76"
+  },
+  "exponent": 332228177,
+  "gpu_model": "Tesla P40",
+  "gpu_uuid": "GPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2",
+  "h200_used": false,
+  "preterminal_negative_gate_exit": 64,
+  "previous_source_sha256": "3ca39854d4e871273950e9516d2f1e21eaa0776576183f1eeb9447962da29fb2",
+  "remote_source_sha256": "49fa4833ae467a03fa46ed7a78d2d0521669660681a0852a9fcaf54de7d0f0b9",
+  "result": "PASS",
+  "schema": "eff.M332228177-completion-race-guard-deployment.v1",
+  "scope": "Terminal-evidence race hardening only; no factor or primality result.",
+  "source_sha256": "49fa4833ae467a03fa46ed7a78d2d0521669660681a0852a9fcaf54de7d0f0b9"
+}
