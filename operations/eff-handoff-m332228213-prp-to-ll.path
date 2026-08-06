@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch for terminal M332228213 PRP result
+
+[Path]
+PathExists=/root/eff-prime/runs/M332228213-prp-queued/completed_utc.txt
+Unit=eff-handoff-m332228213-prp-to-ll.service
+
+[Install]
+WantedBy=multi-user.target

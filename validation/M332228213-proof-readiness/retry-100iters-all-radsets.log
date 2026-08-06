@@ -1,0 +1,15 @@
+INFO: testing qfloat routines...
+INFO: 6124 MB of free system RAM detected.
+CPU Family = x86_64, OS = Linux, 64-bit Version, compiled with Gnu C [or other compatible], Version 15.2.0.
+INFO: CPU supports AVX-512 instruction set, but using AVX2-enabled build.
+INFO: Using prefetch.
+INFO: Using inline-macro form of MUL_LOHI64.
+INFO: Using FMADD-based 100-bit modmul routines for factoring.
+INFO: MLUCAS_PATH is set to "/home/john/eff/runs/mlucas-M332228213-readiness-20260806T0007Z/"
+INFO: mkdir -p "/home/john/eff/runs/mlucas-M332228213-readiness-20260806T0007Z/" succeeded
+INFO: testing IMUL routines...
+INFO: System has 24 available processor cores.
+Set affinity for the following 12 cores: 0.1.2.3.4.5.6.7.8.9.10.11.
+mers_mod_square: Init threadpool of 12 threads
+mers_mod_square: Init threadpool of 12 threads
+mers_mod_square: Init threadpool of 12 threads

@@ -1,0 +1,7 @@
+[Unit]
+Description=Verify M332228213 PRP proof and admit deterministic LL
+After=eff-prp-m332228213.service
+
+[Service]
+Type=oneshot
+ExecStart=/root/eff-prime/scripts/handoff_M332228213_prp_to_ll.sh

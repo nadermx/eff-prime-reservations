@@ -1,0 +1,10 @@
+[Unit]
+Description=Independent CPU/Mlucas Lucas-Lehmer confirmation for M332228213
+
+[Service]
+Type=simple
+WorkingDirectory=/home/john/eff/runs/M332228213-mlucas-queued
+ExecStart=/home/john/eff/runs/M332228213-mlucas-queued/run.sh
+Restart=on-failure
+RestartSec=120
+TimeoutStopSec=180

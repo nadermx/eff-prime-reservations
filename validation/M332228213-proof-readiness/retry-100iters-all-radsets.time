@@ -1,0 +1,100 @@
+
+    Mlucas 21.0.2
+
+    https://www.mersenneforum.org/mayer/README.html
+
+System total RAM = 30683, free RAM = 6124
+INFO: using 64-bit-significand form of floating-double rounding constant for scalar-mode DNINT emulation.
+INFO: Testing 64-bit 2^p (mod q) functions with 100000 random (p, q odd) pairs...
+INFO: testing FFT radix tables...
+
+           Mlucas selftest running.....
+
+
+********** Non-default exponent - you will need to manually verify that the residue **********
+********** triplets output for this self-test match for all FFT radix combinations! **********
+
+/****************************************************************************/
+
+INFO: Unable to find/open mlucas.cfg file in r+ mode ... creating from scratch.
+User did not set LowMem in mlucas.ini ... allowing all test types.
+User did not set CheckInterval in mlucas.ini ... using default.
+NTHREADS = 12
+Setting ITERS_BETWEEN_CHECKPOINTS = 100000.
+ worktodo.txt file not found...using user-supplied command-line exponent p = 332228213
+INFO: Maximum recommended exponent for FFT length (18432 Kdbl) = 339502711; p[ = 332228213]/pmax_rec = 0.9785730783.
+Initial DWT-multipliers chain length = [medium] in carry step.
+M332228213: using FFT length 18432K = 18874368 8-byte floats, initial residue shift count = 187127809
+This gives an average   17.602084106869167 bits per digit
+Using complex FFT radices       288        32        32        32
+Using 8 threads in carry step
+100 iterations of M332228213 with FFT length 18874368 = 18432 K, final residue shift count = 290892171
+Res64: 212C377C4CC32A57. AvgMaxErr = 0.164146205. MaxErr = 0.187500000. Program: E21.0.2
+Res mod 2^35 - 1 =           4446594139
+Res mod 2^36 - 1 =          23791397180
+Clocks = 00:00:02.181
+
+User did not set LowMem in mlucas.ini ... allowing all test types.
+User did not set CheckInterval in mlucas.ini ... using default.
+NTHREADS = 12
+Setting ITERS_BETWEEN_CHECKPOINTS = 100000.
+ worktodo.txt file not found...using user-supplied command-line exponent p = 332228213
+INFO: Maximum recommended exponent for FFT length (18432 Kdbl) = 339502711; p[ = 332228213]/pmax_rec = 0.9785730783.
+Initial DWT-multipliers chain length = [medium] in carry step.
+M332228213: using FFT length 18432K = 18874368 8-byte floats, initial residue shift count = 290892171
+This gives an average   17.602084106869167 bits per digit
+Using complex FFT radices       144        16        16        16        16
+Using 8 threads in carry step
+100 iterations of M332228213 with FFT length 18874368 = 18432 K, final residue shift count = 121170916
+Res64: 212C377C4CC32A57. AvgMaxErr = 0.163834054. MaxErr = 0.187500000. Program: E21.0.2
+Res mod 2^35 - 1 =           4446594139
+Res mod 2^36 - 1 =          23791397180
+Clocks = 00:00:02.584
+
+User did not set LowMem in mlucas.ini ... allowing all test types.
+User did not set CheckInterval in mlucas.ini ... using default.
+NTHREADS = 12
+Setting ITERS_BETWEEN_CHECKPOINTS = 100000.
+ worktodo.txt file not found...using user-supplied command-line exponent p = 332228213
+INFO: Maximum recommended exponent for FFT length (18432 Kdbl) = 339502711; p[ = 332228213]/pmax_rec = 0.9785730783.
+Initial DWT-multipliers chain length = [medium] in carry step.
+M332228213: using FFT length 18432K = 18874368 8-byte floats, initial residue shift count = 121170916
+This gives an average   17.602084106869167 bits per digit
+Using complex FFT radices        36        16        16        32        32
+mers_mod_square: radix0/2 not exactly divisible by NTHREADS - This will hurt performance.
+Using 8 threads in carry step
+100 iterations of M332228213 with FFT length 18874368 = 18432 K, final residue shift count = 16440468
+Res64: 212C377C4CC32A57. AvgMaxErr = 0.176339286. MaxErr = 0.218750000. Program: E21.0.2
+Res mod 2^35 - 1 =           4446594139
+Res mod 2^36 - 1 =          23791397180
+Clocks = 00:00:05.018
+
+INFO: 3 of 3 radix-sets at FFT length 18432 K passed - writing cfg-file entry.
+/ **************************************************************************** /
+
+
+  Done ...
+
+	Command being timed: "/home/john/eff/runs/mlucas-independent-validation-20260805/Mlucas-main-4a21413-avx2-safe -m 332228213 -iters 100 -nthread 12"
+	User time (seconds): 84.53
+	System time (seconds): 0.43
+	Percent of CPU this job got: 728%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:11.66
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 687864
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 35
+	Minor (reclaiming a frame) page faults: 174367
+	Voluntary context switches: 13256
+	Involuntary context switches: 8010
+	Swaps: 0
+	File system inputs: 2888
+	File system outputs: 32
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

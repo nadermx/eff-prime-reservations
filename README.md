@@ -42,6 +42,11 @@ Current public progress:
   Lucas--Lehmer branch, and distinct CPU/Mlucas branch are staged behind real
   negative predecessor gates. At the retained receipt PRP was at iteration
   5,340,000 and neither deterministic branch had started.
+- the same proof-bound deterministic path is now staged for queued
+  `M332228213`; three exact-size Mlucas radix sets and an independent GMP
+  recurrence matched after 100 LL steps on Res64 `212C377C4CC32A57`, while
+  every real absent-predecessor gate refused and candidate-2 arithmetic
+  remained unstarted.
 
 These are active search records, not a probable-prime result, deterministic
 Lucas-Lehmer proof, discovery announcement, or award claim.

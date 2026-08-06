@@ -1,0 +1,200 @@
+{
+  "candidate": {
+    "digits": 100010658,
+    "exponent": 332228213
+  },
+  "captured_utc": "2026-08-06T01:32:20Z",
+  "local_mlucas": {
+    "completion_absent": true,
+    "directory": "/home/john/eff/runs/M332228213-mlucas-queued",
+    "negative_gate": {
+      "exit_status": 64,
+      "stderr": "refusing M332228213 Mlucas confirmation launch: predecessor manifest absent",
+      "stdout": ""
+    },
+    "predecessor_absent": true,
+    "staged_sha256": {
+      "Mlucas-main-4a21413-avx2-safe": "b9d89a8e1a2c2c558c86fad6ead3fd311fd93e9eb67bda1bdf8f9f98c81f3d56",
+      "Mlucas-main-4a21413-source.tar.gz": "7d077166c5d34869e7a08b78cb838317a2ba1a51277fb17ce79c964d987efacb",
+      "mlucas.cfg": "b7eba0cdaa68484642fc4793392a5fd15135d3994b26cf462d6600e09dbdfeca",
+      "run.sh": "d18181e3383766871992024305430ac8b9d2734a6c65ec31574210ea50768961",
+      "verify_mlucas_result.py": "d95f66a12fe0f39d0609860a7fbc2a996d2fc428dd415efe57d3adb1d4909c0e",
+      "worktodo.original.txt": "5a858f60d7475110e9abc402e55b311f77f70d2e52666fcb5ae745d7f0c78a28"
+    },
+    "start_absent": true,
+    "trigger_output": "waiting: proof-verified M332228213 probable-prime trigger is absent",
+    "units": {
+      "eff-M332228213-mlucas-trigger.service": {
+        "ActiveState": "inactive",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "dead",
+        "UnitFileState": "static"
+      },
+      "eff-M332228213-mlucas-trigger.timer": {
+        "ActiveState": "active",
+        "LoadState": "loaded",
+        "Result": "success",
+        "SubState": "waiting",
+        "UnitFileState": "enabled"
+      },
+      "eff-mlucas-m332228213.service": {
+        "ActiveState": "inactive",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "dead",
+        "UnitFileState": "static"
+      }
+    }
+  },
+  "result": "STAGED_AND_INDEPENDENTLY_PREFIX_VERIFIED_NO_ARITHMETIC_STARTED",
+  "schema": "eff.M332228213-prp-to-deterministic-proof-pipeline.v1",
+  "scope": "Candidate 2 proof-path readiness only. M332228213 P-1 and PRP have not started; there is no probable-prime result, deterministic proof, independent full confirmation, publication, or EFF claim.",
+  "source_sha256": {
+    "configs/Mlucas_M332228213.cfg": "b7eba0cdaa68484642fc4793392a5fd15135d3994b26cf462d6600e09dbdfeca",
+    "configs/Mlucas_M332228213.worktodo": "5a858f60d7475110e9abc402e55b311f77f70d2e52666fcb5ae745d7f0c78a28",
+    "configs/eff-M332228213-mlucas-trigger.service": "0eb8027e4c03755e6eb9bfdf2f5a86d7940d25e57b9d27cc17f86cb0383acb80",
+    "configs/eff-M332228213-mlucas-trigger.timer": "8c9bf393f98c09444f23a5ce19ae5ffa1134ca74ae35e7e88122b14c238c4150",
+    "configs/eff-handoff-m332228213-prp-to-ll.path": "65626e05f9069fdc0a4dbfc9d2a14cf40bdfda3d1f79efd05d15d7f4acc01697",
+    "configs/eff-handoff-m332228213-prp-to-ll.service": "fb8ed4e1425c181d9790c99e826c20dc06495d5bf1cc296606e3e7367f6a0f63",
+    "configs/eff-ll-m332228213.service": "3dcfd3aa6dffef2febd35cf6d2575c778e43f587b79fe813af82314f7a26d9e4",
+    "configs/eff-mlucas-m332228213.service": "900552e2fd131418b94613c267c15af7d1a4e333fb9dcb7969a05d553d9b5d13",
+    "scripts/handoff_M332228213_prp_to_ll.sh": "ce628f862d1159bc7522ac3a3168466d163b7f47de1add901777e373bd809e27",
+    "scripts/run_mlucas_ll_M332228213.sh": "d18181e3383766871992024305430ac8b9d2734a6c65ec31574210ea50768961",
+    "scripts/run_p40_ll_M332228213.sh": "7993f833a949faa5d3237bfaba4f9cee216d968fbf8f27bbe2c68ec590e08270",
+    "tools/capture_second_candidate_proof_pipeline.py": "f7ef2ce3a0a7397f9ec82c901f013e91f12c02ee3cae14f0b6646665c8ad2951",
+    "tools/classify_prpll_transition.py": "5af7a4363c0d70bfaa96a484e3ce0bb39f055f907229bc9e941ebea7e7f86166",
+    "tools/reference_lucas_lehmer_prefix_gmp.c": "13e2591caeac9b9b750ad9eae4e1a94bc2406a6c2c32c851c80f21bccef4b469",
+    "tools/sync_and_start_M332228213_mlucas.py": "2fee3bd77f437e9194b496d9126255c6003484a5c73c43c2d12474b74c0e6ebd",
+    "tools/verify_mlucas_result.py": "d95f66a12fe0f39d0609860a7fbc2a996d2fc428dd415efe57d3adb1d4909c0e",
+    "tools/verify_prpll_result.py": "7cb64288e184472df792af28db562415785d42fd43265338965a3349fb4484ec",
+    "verify_mlucas_result_semantics.py": "dee628f3688fdcc7662a4a1a31003566f7b564e8e020871479f462174e157689",
+    "verify_prp_to_ll_transition.py": "423ac8291a5df79128949093fcf38f589612225dd90a272fb0afc7191ec52cbd",
+    "verify_prpll_result_semantics.py": "5a9b8893524dafda78aefe17456798cd8e66aeb0885b4221dde61fac7549e1aa"
+  },
+  "target_size_readiness": {
+    "fft_length_kdoubles": 18432,
+    "generated_config_sha256": "b7eba0cdaa68484642fc4793392a5fd15135d3994b26cf462d6600e09dbdfeca",
+    "gmp_M31_zero_residue_control": true,
+    "gmp_binary_sha256": "afe14e469a32db0974fa4361413008e444f16bd0a5ffe87153d35f2c0ae6b2c3",
+    "gmp_source_sha256": "13e2591caeac9b9b750ad9eae4e1a94bc2406a6c2c32c851c80f21bccef4b469",
+    "gmp_state_bytes": 41528531,
+    "gmp_state_sha256": "36d625e704698143eff37f05b894acbdf70cf3de8bec56c6b8a55e15e49ca8c3",
+    "gmp_stdout_sha256": "1f3b254386c21bdc5a59517c8f6c8b18e9c9f7eb810ad783d9cceca95b2e63de",
+    "gmp_time_sha256": "64bf5cc165301940a415130f0f23e6cd34f9d9900780b6675f67e95a7ee8e686",
+    "independent_gmp_match": true,
+    "iterations": 100,
+    "mlucas_log_sha256": "13c6ec420ab58855d98d52fad8d2a8774e6f7a8014c7aa6bca6371a8d6af90ff",
+    "mlucas_time_sha256": "33ae99ab24232ba12bd2eda0b4d2cb423865b84236177f234a73b866d3be63d4",
+    "radix_sets_matched": 3,
+    "res64": "212C377C4CC32A57",
+    "res_mod_2_35_minus_1": 4446594139,
+    "res_mod_2_36_minus_1": 23791397180
+  },
+  "tests": {
+    "common_result_and_transition_fault_tests": "PASS",
+    "independent_exact_gmp_prefix_match": "PASS",
+    "real_absent_predecessor_gates": "PASS",
+    "shell_syntax": "PASS",
+    "target_size_three_radix_match": "PASS"
+  },
+  "vm101": {
+    "candidate2_ll_completion_absent": true,
+    "candidate2_pminus1_start_absent": true,
+    "candidate2_probable_prime_trigger_absent": true,
+    "candidate2_prp_completion_absent": true,
+    "candidate2_prp_start_absent": true,
+    "current_candidate_pminus1_process": "69102   69077 Wed Aug  5 17:18:40 2026    08:13:25 /usr/bin/time -v env CUDAPM1_ONE_SHOT=1 LD_LIBRARY_PATH=/root/eff-prime/cudapm1/runtime12/nvidia/cufft/lib:/root/eff-prime/cudapm1/runtime12/nvidia/cuda_runtime/lib ./CUDAPm1-system-gmp -d 0 -i CUDAPm1.ini -f 19208K -nrp2 120 worktodo.txt\n  69103   69102 Wed Aug  5 17:18:40 2026    08:13:25 ./CUDAPm1-system-gmp -d 0 -i CUDAPm1.ini -f 19208K -nrp2 120 worktodo.txt",
+    "current_candidate_pminus1_progress": "Transforms: 20534 M332228177, 0x32ca1e12f81f7b69, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:51 real, 11.2843 ms/tran, ETA 3:20:08)\nTransforms: 20416 M332228177, 0x772ae098d543d67c, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:51 real, 11.2824 ms/tran, ETA 3:16:18)\nTransforms: 20288 M332228177, 0xf2f07f8dbd9671f2, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:48 real, 11.2812 ms/tran, ETA 3:12:30)\nTransforms: 19950 M332228177, 0x471988ec7b264524, n = 19208K, CUDAPm1 v0.22 err = 0.12891 (3:46 real, 11.2812 ms/tran, ETA 3:08:45)\nTransforms: 19832 M332228177, 0x933d6ec9cab3551e, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:43 real, 11.2882 ms/tran, ETA 3:05:01)\nTransforms: 19934 M332228177, 0x9ef2f0c031a65fa8, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:45 real, 11.2837 ms/tran, ETA 3:01:17)\nTransforms: 19704 M332228177, 0xcdfa91960d7955c3, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:43 real, 11.2821 ms/tran, ETA 2:57:35)\nTransforms: 19578 M332228177, 0x29dcb589408c0ab6, n = 19208K, CUDAPm1 v0.22 err = 0.12500 (3:40 real, 11.2788 ms/tran, ETA 2:53:54)",
+    "deployed_sha256": {
+      "/etc/systemd/system/eff-handoff-m332228213-prp-to-ll.path": "65626e05f9069fdc0a4dbfc9d2a14cf40bdfda3d1f79efd05d15d7f4acc01697",
+      "/etc/systemd/system/eff-handoff-m332228213-prp-to-ll.service": "fb8ed4e1425c181d9790c99e826c20dc06495d5bf1cc296606e3e7367f6a0f63",
+      "/etc/systemd/system/eff-ll-m332228213.service": "3dcfd3aa6dffef2febd35cf6d2575c778e43f587b79fe813af82314f7a26d9e4",
+      "/root/eff-prime/runs/M332228213-ll-queued/prpll": "04073474c66c374a7ef91c18b6b3c30a5bd726969b67707a533888812f44c27d",
+      "/root/eff-prime/runs/M332228213-ll-queued/run.sh": "7993f833a949faa5d3237bfaba4f9cee216d968fbf8f27bbe2c68ec590e08270",
+      "/root/eff-prime/runs/M332228213-ll-queued/verify_prpll_result.py": "7cb64288e184472df792af28db562415785d42fd43265338965a3349fb4484ec",
+      "/root/eff-prime/runs/M332228213-prp-queued/classify_prpll_transition.py": "5af7a4363c0d70bfaa96a484e3ce0bb39f055f907229bc9e941ebea7e7f86166",
+      "/root/eff-prime/runs/M332228213-prp-queued/prpll": "04073474c66c374a7ef91c18b6b3c30a5bd726969b67707a533888812f44c27d",
+      "/root/eff-prime/runs/M332228213-prp-queued/verify_prpll_result.py": "7cb64288e184472df792af28db562415785d42fd43265338965a3349fb4484ec",
+      "/root/eff-prime/scripts/handoff_M332228213_prp_to_ll.sh": "ce628f862d1159bc7522ac3a3168466d163b7f47de1add901777e373bd809e27"
+    },
+    "gpu": "Tesla P40, GPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2, 100 %, 17915 MiB, 24576 MiB, 34",
+    "h200_used": false,
+    "handoff_negative_gate": {
+      "exit_status": 75,
+      "stderr": "M332228213 PRP-to-LL handoff refused: PRP completion marker absent",
+      "stdout": ""
+    },
+    "host": "38.86.78.5",
+    "ll_negative_gate": {
+      "exit_status": 64,
+      "stderr": "refusing M332228213 Lucas-Lehmer launch: predecessor manifest absent",
+      "stdout": ""
+    },
+    "multiple_source_scp": {
+      "copied_sha256": {
+        "run.sh": "7993f833a949faa5d3237bfaba4f9cee216d968fbf8f27bbe2c68ec590e08270",
+        "verify_prpll_result.py": "7cb64288e184472df792af28db562415785d42fd43265338965a3349fb4484ec"
+      },
+      "result": "PASS"
+    },
+    "units": {
+      "eff-handoff-m332228213-prp-to-ll.path": {
+        "ActiveState": "active",
+        "LoadState": "loaded",
+        "Result": "success",
+        "SubState": "waiting",
+        "UnitFileState": "enabled"
+      },
+      "eff-handoff-m332228213-prp-to-ll.service": {
+        "ActiveState": "inactive",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "dead",
+        "UnitFileState": "static"
+      },
+      "eff-ll-m332228213.service": {
+        "ActiveState": "inactive",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "dead",
+        "UnitFileState": "static"
+      },
+      "eff-pm1-m332228177-resume.service": {
+        "ActiveState": "active",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "running",
+        "UnitFileState": "enabled"
+      },
+      "eff-pm1-m332228213.service": {
+        "ActiveState": "inactive",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "dead",
+        "UnitFileState": "disabled"
+      },
+      "eff-prp-m332228213.service": {
+        "ActiveState": "inactive",
+        "ExecMainStatus": 0,
+        "LoadState": "loaded",
+        "NRestarts": 0,
+        "Result": "success",
+        "SubState": "dead",
+        "UnitFileState": "disabled"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+[Unit]
+Description=Deterministic Lucas-Lehmer proof for M332228213 after proof-verified PRP hit
+After=eff-handoff-m332228213-prp-to-ll.service
+
+[Service]
+Type=simple
+WorkingDirectory=/root/eff-prime/runs/M332228213-ll-queued
+ExecStart=/root/eff-prime/runs/M332228213-ll-queued/run.sh
+Restart=on-failure
+RestartSec=120
+TimeoutStopSec=180
