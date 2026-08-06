@@ -1,0 +1,19 @@
+captured_utc=2026-08-05T22:35:38Z
+scope=local off-VM proof-residue backup timer; snapshot only
+timer_load_state=loaded
+timer_active_state=active
+timer_sub_state=waiting
+timer_unit_file_state=enabled
+timer_last_trigger_local=Wed 2026-08-05 17:26:34 EST
+timer_next_trigger_local=not-reported-by-systemd-show
+timer_schedule=OnUnitActiveSec=10min with RandomizedDelaySec=30s and Persistent=true
+last_service_result=success
+last_service_exec_main_status=0
+last_service_restarts=0
+last_service_active_state=inactive
+last_service_sub_state=dead
+backup_script_sha256=e4bbaf6d34500ed3b006ba6534fddb46c32834f3b98bab2dfde4735ae8df3dcf
+service_unit_sha256=8caf6ba4d1d23e9a8a9801993c7c02c37d9240f855faca6ef0f580e057631ed6
+timer_unit_sha256=861411101e964d79b10e845507841c3a6b522ed888f52f36a61e890512f33f28
+verifier_sha256=189e85eadceb58db5bb8cb777a3f56333cd8ab2a3f2d3a6ac9795aa636978cc3
+qualification=The timer preserves intermediate proof residues; it does not establish a PRP result or primality.

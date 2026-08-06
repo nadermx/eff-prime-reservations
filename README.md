@@ -32,6 +32,9 @@ Current public progress:
   no known factor;
 - full checkpointed PRP began at `2026-08-05T04:50:53Z`;
 - its iteration-2,000 checkpoint was copied off-VM and SHA-256 verified.
+- the continuously protected PRP proof stream reached 36 off-VM residues
+  through iteration 5,839,950; all 1,495,027,008 bytes passed a fresh complete
+  SHA-256 scrub at `2026-08-06T01:41:56Z`.
 - P-1 later reached iteration 150,000, and its newer recovery checkpoint was
   also copied off-VM and SHA-256 verified.
 - a fail-closed completion watcher is waiting for the P-1 exit record; it

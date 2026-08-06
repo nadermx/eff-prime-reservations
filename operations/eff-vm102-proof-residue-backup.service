@@ -1,0 +1,10 @@
+[Unit]
+Description=Incremental off-VM backup of M332228177 PRP proof residues
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/john/eff/scripts/backup_vm102_prp_proof_residues.sh
+StandardOutput=append:/home/john/eff/runs/M332228177-prp-20260805T0450Z/proof-residue-backup.timer.log
+StandardError=append:/home/john/eff/runs/M332228177-prp-20260805T0450Z/proof-residue-backup.timer.log

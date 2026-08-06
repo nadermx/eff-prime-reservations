@@ -1,0 +1,12 @@
+[Unit]
+Description=Poll VM102 for completed M332228177 PRP proof residues
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=10min
+RandomizedDelaySec=30s
+Persistent=true
+Unit=eff-vm102-proof-residue-backup.service
+
+[Install]
+WantedBy=timers.target
