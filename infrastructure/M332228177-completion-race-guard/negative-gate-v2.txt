@@ -1,0 +1,2 @@
+exit_code=64
+stdout=stderr=refusing P-1 completion capture: exit status does not exist

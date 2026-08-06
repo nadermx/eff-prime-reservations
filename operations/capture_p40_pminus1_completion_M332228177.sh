@@ -36,7 +36,10 @@ completion_metadata_ready() {
 
 completion_ready=no
 for _ in $(seq 0 30); do
-    if ! pgrep -f '[C]UDAPm1-system-gmp' >/dev/null && completion_metadata_ready; then
+    if ! pgrep -f '[C]UDAPm1-system-gmp' >/dev/null && \
+       ! systemctl is-active --quiet eff-pm1-m332228177.service && \
+       ! systemctl is-active --quiet eff-pm1-m332228177-resume.service && \
+       completion_metadata_ready; then
         completion_ready=yes
         break
     fi

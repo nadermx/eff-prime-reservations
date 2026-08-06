@@ -1,0 +1,53 @@
+{
+  "arithmetic_restarted": false,
+  "arithmetic_signalled": false,
+  "captured_utc": "2026-08-06T03:22:53Z",
+  "h200_used": false,
+  "lanes": {
+    "M332228213-vm101": {
+      "evidence_sha256": {
+        "M332228213-vm101-after.txt": "d93584c73c4642bb4abcbc5e31a82fd952112daf7e07f50e2a053ce83ee07fe2",
+        "M332228213-vm101-before.txt": "1088c50ed5f3174e9dbbe5d0fb807a017fefa4445158dfe187454887c85b8c62",
+        "M332228213-vm101-negative-gate.txt": "c009ab982a8d12898ff384e2bd663f5599a8bfa1dd116a438d7a9c668853ab66"
+      },
+      "gpu_uuid": "GPU-854d60af-1b7f-b0e5-5b68-b9073f6f7dc2",
+      "negative_gate_exit": 64,
+      "new_source_sha256": "11f4423283537abf9bd20955f32cdaceb2f15b64706d88802e3675ad1ee2256b",
+      "old_source_sha256": "b438e604f06fe9796ef8d0cb5d3ad0d337679439022f987994eb1e8e9128a1d3",
+      "owner_pid_before_after": "69077",
+      "owner_service": "eff-pm1-m332228177-resume.service",
+      "queued_arithmetic_started": false,
+      "queued_services": [
+        "eff-pm1-m332228213.service",
+        "eff-pm1-m332228213-resume.service"
+      ],
+      "remote_host": "38.86.78.5"
+    },
+    "M332228447-vm102": {
+      "evidence_sha256": {
+        "M332228447-vm102-after.txt": "f30563df086bf755b38c100431314a7ed147748303d019bdd57ce5f844bc31ec",
+        "M332228447-vm102-before.txt": "da6aab58dd8b0b3303765fd4305ccc1adf1d7d5ea250a6eca2d561d52bca1751",
+        "M332228447-vm102-negative-gate.txt": "ca91e3dd38668f5273bb170cb19131864af9339cb9bddd6c9fa4e94bd7c03659"
+      },
+      "gpu_uuid": "GPU-a5c50372-9b4f-1496-eebf-f7220cd342fd",
+      "negative_gate_exit": 64,
+      "new_source_sha256": "805bf07e09c3f916d6067ee6f375927a28f9d72929401c8b35b58a9d9702874a",
+      "old_source_sha256": "30f54204a74eb43c18fe035eb35c94724c9f4d9cb4ec60fc60d3fbf18081fb7f",
+      "owner_pid_before_after": "67135",
+      "owner_service": "eff-prp-m332228177.service",
+      "queued_arithmetic_started": false,
+      "queued_services": [
+        "eff-pm1-m332228447-vm102.service",
+        "eff-pm1-m332228447-vm102-resume.service"
+      ],
+      "remote_host": "38.86.78.6"
+    }
+  },
+  "result": "PASS",
+  "schema": "eff.queued-pminus1-completion-race-guards.v1",
+  "scope": "Inactive terminal-path hardening only; no candidate arithmetic or result.",
+  "source_sha256": {
+    "M332228213-vm101": "11f4423283537abf9bd20955f32cdaceb2f15b64706d88802e3675ad1ee2256b",
+    "M332228447-vm102": "805bf07e09c3f916d6067ee6f375927a28f9d72929401c8b35b58a9d9702874a"
+  }
+}

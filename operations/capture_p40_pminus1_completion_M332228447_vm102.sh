@@ -1,9 +1,9 @@
 #!/bin/bash
-# Classify the exact M332228213 P-1 terminal record; starts nothing else.
+# Classify VM102 M332228447 P-1; canonical ledger append remains on VM101.
 
 set -u
-expected_directory="/root/eff-prime/runs/M332228213-pminus1-queued"
-fail() { echo "refusing M332228213 completion capture: $*" >&2; exit 64; }
+expected_directory="/root/eff-prime/runs/M332228447-pminus1-factor-branch"
+fail() { echo "refusing M332228447 VM102 completion capture: $*" >&2; exit 64; }
 [ "$PWD" = "$expected_directory" ] || fail "unexpected directory"
 [ -f exit_status.txt ] || fail "missing exit status"
 
@@ -19,8 +19,8 @@ completion_metadata_ready() {
 completion_ready=no
 for _ in $(seq 0 30); do
     if ! pgrep -f '[C]UDAPm1-system-gmp' >/dev/null && \
-       ! systemctl is-active --quiet eff-pm1-m332228213.service && \
-       ! systemctl is-active --quiet eff-pm1-m332228213-resume.service && \
+       ! systemctl is-active --quiet eff-pm1-m332228447-vm102.service && \
+       ! systemctl is-active --quiet eff-pm1-m332228447-vm102-resume.service && \
        completion_metadata_ready; then
         completion_ready=yes
         break
@@ -39,7 +39,7 @@ if [ "$status" -ne 0 ]; then
     stamp="$(date -u +%Y%m%dT%H%M%SZ)"
     premature="premature-completion-capture-$stamp"
     mkdir "$premature" || fail "cannot create premature capture directory"
-    python3 classify_cudapm1_result.py run.log --exponent 332228213 \
+    python3 classify_cudapm1_result.py run.log --exponent 332228447 \
         --b1 1495000 --b2 32142500 --exit-status "$status" \
         --receipt "$premature/completion-receipt.json" \
         --factor-certificate "$premature/factor-certificate.json" \
@@ -52,40 +52,37 @@ if [ "$status" -ne 0 ]; then
     exit 0
 fi
 if [ ! -f completion-receipt.json ]; then
-    python3 classify_cudapm1_result.py run.log --exponent 332228213 \
+    python3 classify_cudapm1_result.py run.log --exponent 332228447 \
         --b1 1495000 --b2 32142500 --exit-status "$status" \
         --receipt completion-receipt.json --factor-certificate factor-certificate.json \
         > completion-classifier.stdout
 fi
-
-# The handoff watches completion-published.txt, not the receipt itself.  This
-# makes the ledger result record and all provenance part of the atomic gate.
-receipt_sha="$(sha256sum completion-receipt.json | awk '{print $1}')"
 classification="$(python3 -c 'import json; print(json.load(open("completion-receipt.json"))["classification"])')"
-case "$classification" in
-    completed_no_factor_report) ledger_event=checkpoint ;;
-    verified_factor) ledger_event=result ;;
+case "$classification" in completed_no_factor_report|verified_factor) ;; 
     *) fail "inadmissible zero-exit classification: $classification" ;;
 esac
-latest_matches="$(python3 - "$receipt_sha" "$ledger_event" <<'PY'
+receipt_sha="$(sha256sum completion-receipt.json | awk '{print $1}')"
+python3 - "$receipt_sha" "$classification" <<'PY'
 import json
+import os
 import sys
-records = [json.loads(line) for line in open("ledger/mersenne_candidates.jsonl", encoding="utf-8")]
-history = [r for r in records if r.get("exponent") == 332228213]
-print("yes" if history and history[-1].get("event") == sys.argv[2] and
-      history[-1].get("evidence_sha256") == sys.argv[1] else "no")
+from datetime import datetime, timezone
+doc = {
+    "schema": "eff.M332228447-pminus1-terminal-sync-required.v1",
+    "captured_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    "exponent": 332228447,
+    "classification": sys.argv[2],
+    "completion_receipt_sha256": sys.argv[1],
+    "canonical_ledger_host": "38.86.78.5",
+    "canonical_ledger_appended": False,
+    "follow_on_work_allowed": False,
+}
+tmp = "terminal-sync-required.json.tmp"
+open(tmp, "w", encoding="utf-8").write(json.dumps(doc, indent=2, sort_keys=True) + "\n")
+os.replace(tmp, "terminal-sync-required.json")
 PY
-)"
-if [ "$latest_matches" != yes ]; then
-    python3 candidate_ledger.py append ledger/mersenne_candidates.jsonl \
-        --event "$ledger_event" --exponent 332228213 --evidence-sha256 "$receipt_sha" \
-        --note "Completed fixed-bound P-1 classification: $classification; B1=1495000, B2=32142500." \
-        > ledger-classification-head.txt || fail "cannot append P-1 classification"
-fi
-python3 candidate_ledger.py verify ledger/mersenne_candidates.jsonl \
-    > ledger-classification-verify.txt || fail "post-classification ledger invalid"
 sha256sum completion-receipt.json completion-classifier.stdout exit_status.txt \
-    run.log run.time "${terminal_metadata[@]}" ledger/mersenne_candidates.jsonl \
+    run.log run.time "${terminal_metadata[@]}" terminal-sync-required.json \
     > completion-provenance.sha256
 sha256sum completion-receipt.json > completion-receipt.sha256
 date -u +%Y-%m-%dT%H:%M:%SZ > completion-published.txt

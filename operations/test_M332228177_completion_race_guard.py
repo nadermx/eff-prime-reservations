@@ -50,6 +50,8 @@ def main() -> int:
         "ended_utc.txt -nt exit_status.txt",
         "after_gpu.csv -nt exit_status.txt",
         "for _ in $(seq 0 30)",
+        "systemctl is-active --quiet eff-pm1-m332228177.service",
+        "systemctl is-active --quiet eff-pm1-m332228177-resume.service",
         "terminal process/metadata did not settle",
     ):
         if required not in text:

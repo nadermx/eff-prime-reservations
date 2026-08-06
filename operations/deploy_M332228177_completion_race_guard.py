@@ -65,12 +65,21 @@ def main() -> int:
     subprocess.run(["bash", "-n", str(SOURCE)], check=True)
     source_sha = sha256(SOURCE)
     EVIDENCE.mkdir(parents=True, exist_ok=True)
-    receipt_path = EVIDENCE / "deployment-receipt.json"
+    first_receipt_path = EVIDENCE / "deployment-receipt.json"
+    prior_receipt: dict[str, object] | None = None
+    if first_receipt_path.exists():
+        prior_receipt = json.loads(first_receipt_path.read_text())
+        if prior_receipt.get("source_sha256") == source_sha:
+            print("existing completion-race-guard deployment receipt is valid")
+            return 0
+        receipt_path = EVIDENCE / "deployment-v2-receipt.json"
+    else:
+        receipt_path = first_receipt_path
     if receipt_path.exists():
         receipt = json.loads(receipt_path.read_text())
         if receipt.get("source_sha256") != source_sha:
-            raise RuntimeError("existing deployment receipt binds different source")
-        print("existing completion-race-guard deployment receipt is valid")
+            raise RuntimeError("existing v2 deployment receipt binds different source")
+        print("existing completion-race-guard v2 deployment receipt is valid")
         return 0
 
     before = snapshot()
@@ -86,7 +95,10 @@ def main() -> int:
         line.split("=", 1)[1] for line in before.splitlines() if line.startswith("MainPID=")
     )
     before_remote_sha = before.strip().splitlines()[-1].split()[0]
-    if before_remote_sha not in {OLD_SHA, source_sha}:
+    allowed_previous = {OLD_SHA, source_sha}
+    if prior_receipt is not None:
+        allowed_previous.add(str(prior_receipt["source_sha256"]))
+    if before_remote_sha not in allowed_previous:
         raise RuntimeError(f"unexpected predeployment remote script hash {before_remote_sha}")
 
     with tempfile.TemporaryDirectory(prefix="eff-completion-race-") as raw:
@@ -98,8 +110,7 @@ def main() -> int:
         )
         install = ssh(
             f"set -e; test \"$(sha256sum {staged} | awk '{{print $1}}')\" = {source_sha}; "
-            f"if test \"$(sha256sum {REMOTE} | awk '{{print $1}}')\" = {OLD_SHA}; then "
-            f"cp -p {REMOTE} {REMOTE}.before-race-guard; fi; "
+            f"cp -p {REMOTE} {REMOTE}.before-race-guard-{before_remote_sha[:12]}; "
             f"chmod 0755 {staged}; mv {staged} {REMOTE}; sync {REMOTE}; sha256sum {REMOTE}"
         )
         if install.stdout.split()[0] != source_sha:
@@ -122,20 +133,28 @@ def main() -> int:
     if f"MainPID={before_pid}" not in final or "exit_status=absent" not in final:
         raise RuntimeError("negative gate disturbed arithmetic")
 
-    before_path = EVIDENCE / "vm101-before.txt"
-    after_path = EVIDENCE / "vm101-after.txt"
-    negative_path = EVIDENCE / "negative-gate.txt"
+    suffix = "-v2" if prior_receipt is not None else ""
+    before_path = EVIDENCE / f"vm101{suffix}-before.txt"
+    after_path = EVIDENCE / f"vm101{suffix}-after.txt"
+    negative_path = EVIDENCE / f"negative-gate{suffix}.txt"
     before_path.write_text(before)
     after_path.write_text(final)
     negative_path.write_text(
         f"exit_code={negative.returncode}\nstdout={negative.stdout}stderr={negative.stderr}"
     )
     document = {
-        "schema": "eff.M332228177-completion-race-guard-deployment.v1",
+        "schema": (
+            "eff.M332228177-completion-race-guard-deployment.v2"
+            if prior_receipt is not None
+            else "eff.M332228177-completion-race-guard-deployment.v1"
+        ),
         "captured_utc": utc_now(),
         "exponent": 332_228_177,
         "source_sha256": source_sha,
         "previous_source_sha256": before_remote_sha,
+        "predecessor_deployment_receipt_sha256": (
+            sha256(first_receipt_path) if prior_receipt is not None else None
+        ),
         "remote_source_sha256": source_sha,
         "arithmetic_pid_before_after": before_pid,
         "arithmetic_restarted": False,
@@ -146,9 +165,9 @@ def main() -> int:
         "completion_path_active_waiting": True,
         "preterminal_negative_gate_exit": negative.returncode,
         "evidence_sha256": {
-            "vm101-before.txt": sha256(before_path),
-            "vm101-after.txt": sha256(after_path),
-            "negative-gate.txt": sha256(negative_path),
+            before_path.name: sha256(before_path),
+            after_path.name: sha256(after_path),
+            negative_path.name: sha256(negative_path),
         },
         "result": "PASS",
         "scope": "Terminal-evidence race hardening only; no factor or primality result.",

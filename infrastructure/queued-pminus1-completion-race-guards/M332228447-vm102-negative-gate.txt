@@ -1,0 +1,2 @@
+exit_code=64
+stdout=stderr=refusing M332228447 VM102 completion capture: missing exit status

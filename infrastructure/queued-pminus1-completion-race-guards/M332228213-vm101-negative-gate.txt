@@ -1,0 +1,2 @@
+exit_code=64
+stdout=stderr=refusing M332228213 completion capture: missing exit status

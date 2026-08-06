@@ -1,0 +1,19 @@
+2026-08-06T03:22:47Z
+MainPID=67135
+NRestarts=0
+Id=eff-prp-m332228177.service
+ActiveState=active
+SubState=running
+Id=eff-pm1-m332228447-vm102.service
+ActiveState=inactive
+SubState=dead
+UnitFileState=disabled
+
+Id=eff-pm1-m332228447-vm102-resume.service
+ActiveState=inactive
+SubState=dead
+UnitFileState=disabled
+exit_status=absent
+completion_receipt=absent
+GPU-a5c50372-9b4f-1496-eebf-f7220cd342fd, Tesla P40, 100 %, 801 MiB, 37
+30f54204a74eb43c18fe035eb35c94724c9f4d9cb4ec60fc60d3fbf18081fb7f  /root/eff-prime/runs/M332228447-pminus1-factor-branch/capture-completion.sh
